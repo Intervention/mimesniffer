@@ -14,13 +14,9 @@ class ImageSvg extends AbstractType
     public $name = "image/svg+xml";
 
     /**
-     * Determine if the given content matches the signature
-     *
-     * @param  string $content
-     * @return bool
+     * Signature pattern
+     * 
+     * @var string
      */
-    public function matches($content)
-    {
-        return preg_match("/^<\?xml(\s|.)+<svg/i", $content) === 1;
-    }
+    public $pattern = "/^<\?xml(\s|.)+<svg/i";
 }
