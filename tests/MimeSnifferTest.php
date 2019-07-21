@@ -115,7 +115,7 @@ class MimeSnifferTest extends TestCase
     public function testGetTypeXml()
     {
         $this->expectException(NotMatchingException::class);
-        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/sitemap.xml');
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.xml');
         $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
     }
 }
