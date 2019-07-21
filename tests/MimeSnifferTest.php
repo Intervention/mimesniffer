@@ -9,7 +9,9 @@ use Intervention\MimeSniffer\Types\ImageGif;
 use Intervention\MimeSniffer\Types\ImageIco;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 use Intervention\MimeSniffer\Types\ImagePng;
+use Intervention\MimeSniffer\Types\ImagePsd;
 use Intervention\MimeSniffer\Types\ImageSvg;
+use Intervention\MimeSniffer\Types\ImageTiff;
 use Intervention\MimeSniffer\Types\ImageWebp;
 use PHPUnit\Framework\TestCase;
 
@@ -61,6 +63,14 @@ class MimeSnifferTest extends TestCase
         $content = file_get_contents(__DIR__ . '/../tests/files/test.webp');
         $sniffer = MimeSniffer::createFromString($content);
         $this->assertEquals('52494646C40000005745425056503820' , $sniffer->getHeader());
+
+        $content = file_get_contents(__DIR__ . '/../tests/stubs/tiff');
+        $sniffer = MimeSniffer::createFromString($content);
+        $this->assertEquals('49492A00' , $sniffer->getHeader());
+
+        $content = file_get_contents(__DIR__ . '/../tests/stubs/psd');
+        $sniffer = MimeSniffer::createFromString($content);
+        $this->assertEquals('384250531E' , $sniffer->getHeader());
     }
 
     public function testGetTypeNotMatching()
@@ -117,5 +127,17 @@ class MimeSnifferTest extends TestCase
         $this->expectException(NotMatchingException::class);
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.xml');
         $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
+    }
+
+    public function testGetTypeTiff()
+    {
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/stubs/tiff');
+        $this->assertInstanceOf(ImageTiff::class, $sniffer->getType());
+    }
+
+    public function testGetTypePsd()
+    {
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/stubs/psd');
+        $this->assertInstanceOf(ImagePsd::class, $sniffer->getType());
     }
 }
