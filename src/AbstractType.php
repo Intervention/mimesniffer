@@ -30,6 +30,16 @@ abstract class AbstractType
     }
 
     /**
+     * Determine if the detected type is an image
+     *
+     * @return boolean
+     */
+    public function isImage()
+    {
+        return substr($this->name, 0, 5) === 'image';
+    }
+
+    /**
      * Cast type to string 
      *
      * @return string

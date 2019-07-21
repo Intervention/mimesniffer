@@ -10,11 +10,12 @@ use Intervention\MimeSniffer\MimeSniffer
 // detect given string
 $sniffer = MimeSniffer::createFromString($content);
 
-$type = $sniffer->getType(); // returns detected type object
-$type = (string) $type; // cast type to string (image/jpeg)
-
 // or detect given file
 $sniffer = MimeSniffer::createFromFilename('image.jpg');
+
+$type = $sniffer->getType(); // returns detected type object
+$bool = $type->isImage(); // check if we detected an image
+$type = (string) $type; // cast type to string (e.g. "image/jpeg")
 ```
 
 **Currently only the following file types can be detected. More will be added in a next release.**

@@ -18,4 +18,10 @@ class AbstractTypeTest extends TestCase
         $type = $this->getMockForAbstractClass(AbstractType::class);
         $this->assertFalse($type->matches('test'));
     }
+
+    public function testIsImage()
+    {
+        $type = $this->getMockForAbstractClass(AbstractType::class);
+        $this->assertFalse($type->isImage());
+    }
 }
