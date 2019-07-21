@@ -20,15 +20,16 @@ $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 
 **Currently only the following file types can be detected. More will be added in a next release.**
 
-- image/jpeg
-- image/gif
-- image/png
-- image/bmp
-- image/x-icon
-- image/webp
-- image/svg+xml
-- image/tiff
-- image/vnd.adobe.photoshop
+- Image encoded as JPEG raw or in the JFIF or Exif file format
+- Image file encoded in the Graphics Interchange Format (GIF)
+- Image encoded in the Portable Network Graphics format[13]
+- Image encoded as BMP file, a bitmap format
+- Icon encoded in ICO file format
+- Image in Google WebP image format
+- Scalable Vector Graphics (SVG)
+- Tagged Image File Format (TIFF)
+- Image encoded Photoshop Document file format (PSD)
+- PDF document
 
 ## Installation
 
