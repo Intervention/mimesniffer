@@ -9,6 +9,7 @@ use Intervention\MimeSniffer\Types\ImageGif;
 use Intervention\MimeSniffer\Types\ImageIco;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 use Intervention\MimeSniffer\Types\ImagePng;
+use Intervention\MimeSniffer\Types\ImageSvg;
 use Intervention\MimeSniffer\Types\ImageWebp;
 use PHPUnit\Framework\TestCase;
 
@@ -28,38 +29,38 @@ class MimeSnifferTest extends TestCase
 
     public function testCreateFromFilename()
     {
-        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/images/test.jpg');
-        $this->assertEquals('FFD8FFE000104A464946000101000001' , $sniffer->getSignature());
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.jpg');
+        $this->assertEquals('FFD8FFE000104A464946000101000001' , $sniffer->getHeader());
     }
 
-    public function testGetSignature()
+    public function testGetHeader()
     {
         $sniffer = MimeSniffer::createFromString('foo');
-        $this->assertEquals('666F6F' , $sniffer->getSignature());
+        $this->assertEquals('foo' , $sniffer->getHeader());
 
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.jpg');
+        $content = file_get_contents(__DIR__ . '/../tests/files/test.jpg');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('FFD8FFE000104A464946000101000001' , $sniffer->getSignature());
+        $this->assertEquals('FFD8FFE000104A464946000101000001' , $sniffer->getHeader());
 
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.png');
+        $content = file_get_contents(__DIR__ . '/../tests/files/test.png');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('89504E470D0A1A0A0000000D49484452' , $sniffer->getSignature());
+        $this->assertEquals('89504E470D0A1A0A0000000D49484452' , $sniffer->getHeader());
 
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.gif');
+        $content = file_get_contents(__DIR__ . '/../tests/files/test.gif');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('47494638396114000F00F40700394B63' , $sniffer->getSignature());
+        $this->assertEquals('47494638396114000F00F40700394B63' , $sniffer->getHeader());
 
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.bmp');
+        $content = file_get_contents(__DIR__ . '/../tests/files/test.bmp');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('424D3802000000000000360000002800' , $sniffer->getSignature());
+        $this->assertEquals('424D3802000000000000360000002800' , $sniffer->getHeader());
 
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.ico');
+        $content = file_get_contents(__DIR__ . '/../tests/files/test.ico');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('00000100010010100000010020002805' , $sniffer->getSignature());
+        $this->assertEquals('00000100010010100000010020002805' , $sniffer->getHeader());
 
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.webp');
+        $content = file_get_contents(__DIR__ . '/../tests/files/test.webp');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('52494646C40000005745425056503820' , $sniffer->getSignature());
+        $this->assertEquals('52494646C40000005745425056503820' , $sniffer->getHeader());
     }
 
     public function testGetTypeNotMatching()
@@ -71,43 +72,50 @@ class MimeSnifferTest extends TestCase
 
     public function testGetTypeJpeg()
     {
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.jpg');
-        $sniffer = MimeSniffer::createFromString($content);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.jpg');
         $this->assertInstanceOf(ImageJpeg::class, $sniffer->getType());
     }
 
     public function testGetTypePng()
     {
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.png');
-        $sniffer = MimeSniffer::createFromString($content);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.png');
         $this->assertInstanceOf(ImagePng::class, $sniffer->getType());
     }
 
     public function testGetTypeGif()
     {
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.gif');
-        $sniffer = MimeSniffer::createFromString($content);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.gif');
         $this->assertInstanceOf(ImageGif::class, $sniffer->getType());
     }
 
     public function testGetTypeBmp()
     {
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.bmp');
-        $sniffer = MimeSniffer::createFromString($content);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.bmp');
         $this->assertInstanceOf(ImageBmp::class, $sniffer->getType());
     }
 
     public function testGetTypeIco()
     {
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.ico');
-        $sniffer = MimeSniffer::createFromString($content);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.ico');
         $this->assertInstanceOf(ImageIco::class, $sniffer->getType());
     }
 
     public function testGetTypeWebp()
     {
-        $content = file_get_contents(__DIR__ . '/../tests/images/test.webp');
-        $sniffer = MimeSniffer::createFromString($content);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.webp');
         $this->assertInstanceOf(ImageWebp::class, $sniffer->getType());
+    }
+
+    public function testGetTypeSvg()
+    {
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.svg');
+        $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
+    }
+
+    public function testGetTypeXml()
+    {
+        $this->expectException(NotMatchingException::class);
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/sitemap.xml');
+        $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
     }
 }

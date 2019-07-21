@@ -41,7 +41,7 @@ class MimeSniffer
     public static function createFromFilename($filename)
     {
         $fp = fopen($filename, 'r');
-        $content = fread($fp, 32);
+        $content = fread($fp, 256);
         fclose($fp);
 
         return new self($content);
@@ -56,7 +56,7 @@ class MimeSniffer
     {
         foreach ($this->getTypeClassnames() as $classname) {
             $type = new $classname;
-            if ($type->matches($this->getSignature())) {
+            if ($type->matches($this->getHeader())) {
                 return $type;
             }
         }
@@ -65,13 +65,40 @@ class MimeSniffer
     }
 
     /**
-     * Return file signature of current content
+     * Return head of current content
      *
      * @return string
      */
-    public function getSignature()
+    public function getHeader()
     {
-        return strtoupper(substr(bin2hex($this->content), 0, 32));
+        if ($this->hasBinaryContent()) {
+            return strtoupper(substr(bin2hex($this->content), 0, 32));
+        }
+
+        return substr($this->content, 0, 256);
+    }
+
+    /**
+     * Determine of the current content is binary
+     *
+     * @return boolean
+     */
+    private function hasBinaryContent()
+    {
+        $binary_chars = [
+            "\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07",
+            "\0x08", "\x0B", "\x0E", "\x0F", "\x10", "\x11", "\x12", "\x13",
+            "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1A", "\x1C",
+            "\x1D", "\x1E", "\x1F",
+        ];
+
+        foreach ($binary_chars as $char) {
+            if (strpos($this->content, $char) !== false) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
