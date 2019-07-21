@@ -15,6 +15,15 @@ $type = (string) $type; // cast type to string (image/jpeg)
 $sniffer = MimeSniffer::createFromFilename('image.jpg');
 ```
 
+**Currently only image the following file types can be detected. More will be added in a next release.**
+
+- image/jpeg
+- image/gif
+- image/png
+- image/bmp
+- image/x-icon
+- image/webp
+
 ## Installation
 
 Install the package easily via composer:
