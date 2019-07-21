@@ -1,5 +1,7 @@
 # A class to detect mime types of given contents
 
+[![Build Status](https://travis-ci.org/Intervention/mimesniffer.png?branch=master)](https://travis-ci.org/Intervention/mimesniffer)
+
 This package makes it easy to detect the mime types of a given file or content. Here's an example:
 
 ```php
