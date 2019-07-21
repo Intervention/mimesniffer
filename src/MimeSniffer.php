@@ -18,7 +18,7 @@ class MimeSniffer
      */
     public function __construct($content)
     {
-        $this->content = $content;
+        $this->content = strval($content);
     }
 
     /**
