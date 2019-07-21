@@ -26,6 +26,8 @@ $sniffer = MimeSniffer::createFromFilename('image.jpg');
 - image/x-icon
 - image/webp
 - image/svg+xml
+- image/tiff
+- image/vnd.adobe.photoshop
 
 ## Installation
 
