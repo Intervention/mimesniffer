@@ -83,7 +83,7 @@ class MimeSniffer
      *
      * @return boolean
      */
-    private function hasBinaryContent()
+    public function hasBinaryContent()
     {
         $binary_chars = [
             "\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07",
