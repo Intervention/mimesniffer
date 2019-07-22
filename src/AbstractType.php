@@ -40,6 +40,18 @@ abstract class AbstractType
     }
 
     /**
+     * Determine if the detected type is an archive
+     *
+     * @return boolean
+     */
+    public function isArchive()
+    {
+        return in_array($this->name, [
+            'application/zip',
+        ]);
+    }
+
+    /**
      * Cast type to string
      *
      * @return string
