@@ -40,6 +40,26 @@ abstract class AbstractType
     }
 
     /**
+     * Determine if the detected type is an video
+     *
+     * @return boolean
+     */
+    public function isVideo()
+    {
+        return substr($this->name, 0, 5) === 'video';
+    }
+
+    /**
+     * Determine if the detected type is an audio file
+     *
+     * @return boolean
+     */
+    public function isAudio()
+    {
+        return substr($this->name, 0, 5) === 'audio';
+    }
+
+    /**
      * Determine if the detected type is an archive
      *
      * @return boolean
