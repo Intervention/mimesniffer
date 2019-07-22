@@ -48,6 +48,7 @@ abstract class AbstractType
     {
         return in_array($this->name, [
             'application/zip',
+            'application/x-rar-compressed',
         ]);
     }
 
