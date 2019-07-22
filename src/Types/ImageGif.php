@@ -15,7 +15,7 @@ class ImageGif extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^47494638(37|39)61/";

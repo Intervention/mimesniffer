@@ -11,32 +11,32 @@ class MimeSnifferTest extends TestCase
     public function testConstructor()
     {
         $sniffer = new MimeSniffer('foo');
-        $this->assertInstanceOf(MimeSniffer::class, $sniffer);    
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
     public function testCreateFromString()
     {
         $sniffer = MimeSniffer::createFromString('foo');
-        $this->assertInstanceOf(MimeSniffer::class, $sniffer);    
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
     public function testCreateFromFilename()
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.jpg');
-        $this->assertEquals('FFD8FFE000104A464946000101000001' , $sniffer->getHeader());
+        $this->assertEquals('FFD8FFE000104A464946000101000001', $sniffer->getHeader());
     }
 
     public function testGetHeader()
     {
         $sniffer = MimeSniffer::createFromString('foo');
-        $this->assertEquals('foo' , $sniffer->getHeader());
+        $this->assertEquals('foo', $sniffer->getHeader());
     }
 
     public function testGetHeaderBinary()
     {
         $content = file_get_contents(__DIR__ . '/../tests/files/test.jpg');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('FFD8FFE000104A464946000101000001' , $sniffer->getHeader());
+        $this->assertEquals('FFD8FFE000104A464946000101000001', $sniffer->getHeader());
     }
 
     public function testGetTypeNotMatching()

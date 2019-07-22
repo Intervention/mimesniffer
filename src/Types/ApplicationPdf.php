@@ -15,7 +15,7 @@ class ApplicationPdf extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^255044462D/";

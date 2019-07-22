@@ -15,7 +15,7 @@ class ImagePng extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^89504E470D0A1A0A/";

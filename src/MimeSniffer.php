@@ -24,7 +24,8 @@ class MimeSniffer
     /**
      * Create new instance from given string
      *
-     * @param  string $content
+     * @param string $content
+     *
      * @return MimeSniffer
      */
     public static function createFromString($content)
@@ -35,7 +36,8 @@ class MimeSniffer
     /**
      * Create a new instance and load contents of given filename
      *
-     * @param  string $filename
+     * @param string $filename
+     *
      * @return MimeSniffer
      */
     public static function createFromFilename($filename)
@@ -86,7 +88,6 @@ class MimeSniffer
     public function hasBinaryContent()
     {
         if (is_string($this->content)) {
-            
             $binary_chars = [
                 "\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07",
                 "\0x08", "\x0B", "\x0E", "\x0F", "\x10", "\x11", "\x12", "\x13",

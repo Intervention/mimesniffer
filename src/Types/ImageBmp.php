@@ -15,7 +15,7 @@ class ImageBmp extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^424D/";

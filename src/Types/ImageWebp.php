@@ -15,7 +15,7 @@ class ImageWebp extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^52494646.{8}57454250/";

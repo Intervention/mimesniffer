@@ -15,7 +15,7 @@ class ImageIco extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^00000100/";

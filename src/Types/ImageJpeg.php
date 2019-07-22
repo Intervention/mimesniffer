@@ -15,7 +15,7 @@ class ImageJpeg extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^FFD8FF(DB|E0|EE|E1)/";

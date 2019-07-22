@@ -15,7 +15,7 @@ class ImagePsd extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^38425053/";

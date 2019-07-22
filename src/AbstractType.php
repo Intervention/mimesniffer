@@ -13,7 +13,7 @@ abstract class AbstractType
 
     /**
      * Signature pattern of type
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^$/";
@@ -40,7 +40,7 @@ abstract class AbstractType
     }
 
     /**
-     * Cast type to string 
+     * Cast type to string
      *
      * @return string
      */

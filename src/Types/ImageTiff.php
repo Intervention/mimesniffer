@@ -15,7 +15,7 @@ class ImageTiff extends AbstractType
 
     /**
      * Signature pattern
-     * 
+     *
      * @var string
      */
     protected $pattern = "/^(49492A00|4D4D002A)/";
