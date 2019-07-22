@@ -50,6 +50,7 @@ abstract class AbstractType
             'application/zip',
             'application/x-rar-compressed',
             'application/x-tar',
+            'application/gzip',
         ]);
     }
 
