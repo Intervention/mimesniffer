@@ -37,6 +37,7 @@ $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 - GZIP compressed
 - ZIP file
 - RAR archive
+- TAR file
 
 ### Other
 
