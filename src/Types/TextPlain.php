@@ -2,21 +2,21 @@
 
 namespace Intervention\MimeSniffer\Types;
 
-use Intervention\MimeSniffer\AbstractBinaryType;
+use Intervention\MimeSniffer\AbstractType;
 
-class ImageGif extends AbstractBinaryType
+class TextPlain extends AbstractType
 {
     /**
      * Name of content type
      *
      * @var string
      */
-    public $name = "image/gif";
+    public $name = "text/plain";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^47494638(37|39)61/";
+    protected $pattern = "/^.*/s";
 }

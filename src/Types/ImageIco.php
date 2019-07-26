@@ -2,9 +2,9 @@
 
 namespace Intervention\MimeSniffer\Types;
 
-use Intervention\MimeSniffer\AbstractType;
+use Intervention\MimeSniffer\AbstractBinaryType;
 
-class ImageIco extends AbstractType
+class ImageIco extends AbstractBinaryType
 {
     /**
      * Name of content type

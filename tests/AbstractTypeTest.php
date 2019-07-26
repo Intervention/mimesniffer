@@ -24,4 +24,21 @@ class AbstractTypeTest extends TestCase
         $type = $this->getMockForAbstractClass(AbstractType::class);
         $this->assertFalse($type->isImage());
     }
+
+    public function testPrepareContent()
+    {
+        $content = '';
+        for ($i=0; $i < 2048; $i++) {
+            $content .= 'x';
+        }
+
+        $type = $this->getMockForAbstractClass(AbstractType::class);
+        $this->assertEquals(1024, strlen($type->prepareContent($content)));
+    }
+
+    public function testIsBinary()
+    {
+        $type = $this->getMockForAbstractClass(AbstractType::class);
+        $this->assertFalse($type->isBinary());
+    }
 }

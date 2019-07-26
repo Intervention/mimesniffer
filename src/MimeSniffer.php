@@ -58,56 +58,28 @@ class MimeSniffer
     {
         foreach ($this->getTypeClassnames() as $classname) {
             $type = new $classname;
-            if ($type->matches($this->getHeader())) {
+            if ($type->matches($this->content)) {
                 return $type;
             }
         }
 
-        throw new Exceptions\NotMatchingException('No matching type found');
-    }
-
-    public function matches(AbstractType $type)
-    {
-        return $type->matches($this->getHeader());
-    }
-
-    /**
-     * Return head of current content
-     *
-     * @return string
-     */
-    public function getHeader()
-    {
-        if ($this->hasBinaryContent()) {
-            return strtoupper(substr(bin2hex($this->content), 0, 1024));
+        $binaryType = new Types\ApplicationOctetStream;
+        if ($this->matches($binaryType)) {
+            return $binaryType;
         }
 
-        return substr($this->content, 0, 1024);
+        return new Types\TextPlain;
     }
 
     /**
-     * Determine of the current content is binary
+     * Determine if content matches the given type
      *
+     * @param  AbstractType $type
      * @return boolean
      */
-    public function hasBinaryContent()
+    public function matches(AbstractType $type)
     {
-        if (is_string($this->content)) {
-            $binary_chars = [
-                "\x00", "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07",
-                "\0x08", "\x0B", "\x0E", "\x0F", "\x10", "\x11", "\x12", "\x13",
-                "\x14", "\x15", "\x16", "\x17", "\x18", "\x19", "\x1A", "\x1C",
-                "\x1D", "\x1E", "\x1F",
-            ];
-
-            foreach ($binary_chars as $char) {
-                if (strpos($this->content, $char) !== false) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return $type->matches($this->content);
     }
 
     /**
@@ -119,8 +91,15 @@ class MimeSniffer
     {
         $files = array_diff(scandir(__DIR__ . '/Types'), ['.', '..']);
 
-        return array_map(function ($filename) {
+        $classnames = array_map(function ($filename) {
             return "Intervention\\MimeSniffer\\Types\\" . substr($filename, 0, -4);
         }, $files);
+
+        return array_filter($classnames, function ($classname) {
+            return ! in_array($classname, [
+                Types\ApplicationOctetStream::class,
+                Types\TextPlain::class,
+            ]);
+        });
     }
 }

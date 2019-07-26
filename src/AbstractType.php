@@ -26,7 +26,7 @@ abstract class AbstractType
      */
     public function matches($content)
     {
-        return preg_match($this->pattern, $content) === 1;
+        return preg_match($this->pattern, $this->prepareContent($content)) === 1;
     }
 
     /**
@@ -72,6 +72,27 @@ abstract class AbstractType
             'application/x-tar',
             'application/gzip',
         ]);
+    }
+
+    /**
+     * Prepare content (can be extended by child classes)
+     *
+     * @param  string $content
+     * @return string
+     */
+    public function prepareContent($content)
+    {
+        return substr($content, 0, 1024);
+    }
+
+    /**
+     * Determine of current type is binary
+     *
+     * @return boolean
+     */
+    public function isBinary()
+    {
+        return false;
     }
 
     /**

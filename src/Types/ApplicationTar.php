@@ -2,9 +2,9 @@
 
 namespace Intervention\MimeSniffer\Types;
 
-use Intervention\MimeSniffer\AbstractType;
+use Intervention\MimeSniffer\AbstractBinaryType;
 
-class ApplicationTar extends AbstractType
+class ApplicationTar extends AbstractBinaryType
 {
     /**
      * Name of content type

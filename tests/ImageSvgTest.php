@@ -5,6 +5,7 @@ namespace Intervention\MimeSniffer\Test;
 use Intervention\MimeSniffer\Exceptions\NotMatchingException;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageSvg;
+use Intervention\MimeSniffer\Types\TextPlain;
 use PHPUnit\Framework\TestCase;
 
 class ImageSvgTest extends TestCase
@@ -30,8 +31,7 @@ class ImageSvgTest extends TestCase
 
     public function testPlainXmlIsNotSvg()
     {
-        $this->expectException(NotMatchingException::class);
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.xml');
-        $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
+        $this->assertInstanceOf(TextPlain::class, $sniffer->getType());
     }
 }
