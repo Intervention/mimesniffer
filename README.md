@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Intervention/mimesniffer.png?branch=master)](https://travis-ci.org/Intervention/mimesniffer)
 
-Detecting MIME Content-type in PHP is easy with [mime_content_type](https://www.php.net/manual/en/function.mime-content-type.php) or [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php). But Fileinfo is an extension and is sometimes not available in the server. The function `mime_content_type` wants a path to the filesystem as argument and doesn't process string values. This package makes it easy to detect the mime types of a given file or string content, without any extension dependencies. Here's an example:
+Detecting MIME Content-type in PHP is easy with [mime_content_type](https://www.php.net/manual/en/function.mime-content-type.php) or [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php). But Fileinfo as an extension is sometimes not available on the server. The function `mime_content_type` wants a path to the filesystem as argument and doesn't process string values. This package makes it easy to detect the mime types of a given file or string content, without any extension dependencies. Here's an example:
 
 ```php
 use Intervention\MimeSniffer\MimeSniffer
