@@ -43,7 +43,7 @@ class MimeSniffer
     public static function createFromFilename($filename)
     {
         $fp = fopen($filename, 'r');
-        $content = fread($fp, 256);
+        $content = fread($fp, 1024);
         fclose($fp);
 
         return new self($content);
@@ -74,10 +74,10 @@ class MimeSniffer
     public function getHeader()
     {
         if ($this->hasBinaryContent()) {
-            return strtoupper(substr(bin2hex($this->content), 0, 32));
+            return strtoupper(substr(bin2hex($this->content), 0, 1024));
         }
 
-        return substr($this->content, 0, 256);
+        return substr($this->content, 0, 1024);
     }
 
     /**

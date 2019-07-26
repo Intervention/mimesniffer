@@ -23,7 +23,7 @@ class MimeSnifferTest extends TestCase
     public function testCreateFromFilename()
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.jpg');
-        $this->assertEquals('FFD8FFE000104A464946000101000001', $sniffer->getHeader());
+        $this->assertEquals('FFD8FFE000104A464946000101000001', substr($sniffer->getHeader(), 0, 32));
     }
 
     public function testGetHeader()
@@ -36,7 +36,7 @@ class MimeSnifferTest extends TestCase
     {
         $content = file_get_contents(__DIR__ . '/../tests/files/test.jpg');
         $sniffer = MimeSniffer::createFromString($content);
-        $this->assertEquals('FFD8FFE000104A464946000101000001', $sniffer->getHeader());
+        $this->assertEquals('FFD8FFE000104A464946000101000001', substr($sniffer->getHeader(), 0, 32));
     }
 
     public function testGetTypeNotMatching()
