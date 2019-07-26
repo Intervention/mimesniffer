@@ -18,6 +18,7 @@ $sniffer = MimeSniffer::createFromFilename('image.jpg');
 $type = $sniffer->getType(); 
 
 $bool = $type->isImage(); // check if we detected an image
+$bool = $type->isBinary(); // check if we have binary data
 $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 
 // you can also check, if the content matches a specific type
@@ -48,6 +49,8 @@ $bool = $sniffer->matches(new ImageJpeg);
 ### Other
 
 - PDF document
+- application/octet-stream (default binary)
+- text/plain (default)
 
 ## Installation
 
