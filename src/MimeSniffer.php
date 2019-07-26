@@ -66,6 +66,11 @@ class MimeSniffer
         throw new Exceptions\NotMatchingException('No matching type found');
     }
 
+    public function matches(AbstractType $type)
+    {
+        return $type->matches($this->getHeader());
+    }
+
     /**
      * Return head of current content
      *

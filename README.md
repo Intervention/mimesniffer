@@ -5,7 +5,8 @@
 Detecting MIME Content-type in PHP is easy with [mime_content_type](https://www.php.net/manual/en/function.mime-content-type.php) or [Fileinfo](https://www.php.net/manual/en/book.fileinfo.php). But Fileinfo as an extension and is sometimes not available on the server. The function `mime_content_type` wants a path to the filesystem as argument and doesn't process string values. This package makes it easy to detect the mime types of a given file or string content, without any extension dependencies. Here's an example:
 
 ```php
-use Intervention\MimeSniffer\MimeSniffer
+use Intervention\MimeSniffer\MimeSniffer;
+use Intervention\MimeSniffer\Types\ImageJpeg;
 
 // detect given string
 $sniffer = MimeSniffer::createFromString($content);
@@ -13,9 +14,14 @@ $sniffer = MimeSniffer::createFromString($content);
 // or detect given file
 $sniffer = MimeSniffer::createFromFilename('image.jpg');
 
-$type = $sniffer->getType(); // returns detected type object
+// returns object of detected type 
+$type = $sniffer->getType(); 
+
 $bool = $type->isImage(); // check if we detected an image
 $type = (string) $type; // cast type to string (e.g. "image/jpeg")
+
+// you can also check, if the content matches a specific type
+$bool = $sniffer->matches(new ImageJpeg);
 ```
 
 **Currently only the following file types can be detected. More will be added in a next release.**

@@ -2,9 +2,11 @@
 
 namespace Intervention\MimeSniffer\Test;
 
-use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\Exceptions\NotMatchingException;
 use Intervention\MimeSniffer\MimeSniffer;
+use Intervention\MimeSniffer\Types\ImageGif;
+use Intervention\MimeSniffer\Types\ImageJpeg;
+use PHPUnit\Framework\TestCase;
 
 class MimeSnifferTest extends TestCase
 {
@@ -44,5 +46,12 @@ class MimeSnifferTest extends TestCase
         $this->expectException(NotMatchingException::class);
         $sniffer = MimeSniffer::createFromString('foo');
         $sniffer->getType();
+    }
+
+    public function testMatches()
+    {
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.gif');
+        $this->assertTrue($sniffer->matches(new ImageGif));
+        $this->assertFalse($sniffer->matches(new ImageJpeg));
     }
 }
