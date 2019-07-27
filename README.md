@@ -46,6 +46,12 @@ $bool = $sniffer->matches(new ImageJpeg);
 - RAR archive
 - TAR file
 
+### Videos
+
+- AVI
+- MPEG-1 and MPEG-2 video 
+- MKV media container
+
 ### Other
 
 - PDF document
