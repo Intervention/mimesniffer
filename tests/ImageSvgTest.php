@@ -34,4 +34,10 @@ class ImageSvgTest extends TestCase
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.xml');
         $this->assertInstanceOf(TextPlain::class, $sniffer->getType());
     }
+
+    public function testSvgWithoutXmlTag()
+    {
+        $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/stubs/svg');
+        $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
+    }
 }

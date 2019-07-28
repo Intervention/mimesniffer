@@ -18,5 +18,5 @@ class ImageSvg extends AbstractType
      *
      * @var string
      */
-    protected $pattern = "/^<\?xml.+<svg/is";
+    protected $pattern = "/^(<\?xml[^>]*\?>.*)?<svg[^>]*>/is";
 }
