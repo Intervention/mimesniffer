@@ -52,6 +52,10 @@ $bool = $sniffer->matches(new ImageJpeg);
 - MPEG-1 and MPEG-2 video 
 - MKV media container
 
+### Audio
+
+- FLAC files
+
 ### Other
 
 - PDF document
