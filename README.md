@@ -17,8 +17,11 @@ $sniffer = MimeSniffer::createFromFilename('image.jpg');
 // returns object of detected type 
 $type = $sniffer->getType(); 
 
-$bool = $type->isImage(); // check if we detected an image
 $bool = $type->isBinary(); // check if we have binary data
+$bool = $type->isImage(); // check if we are dealing with an image
+$bool = $type->isVideo(); // check video data was detected
+$bool = $type->isAudio(); // check if we have detected audio data
+$bool = $type->isArchive(); // check if an archive was detected
 $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 
 // you can also check, if the content matches a specific type
