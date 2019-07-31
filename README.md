@@ -25,7 +25,7 @@ $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 $bool = $sniffer->matches(new ImageJpeg);
 ```
 
-If your prefer non-static initialization.
+If your prefer non-static initialization:
 
 ```php
 use Intervention\MimeSniffer\MimeSniffer;
