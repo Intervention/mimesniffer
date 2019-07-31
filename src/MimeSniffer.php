@@ -99,13 +99,38 @@ class MimeSniffer
 
     /**
      * Determine if content matches the given type
+     * or any if the given types in array
      *
-     * @param  AbstractType $type
+     * @param  AbstractType|array $types AbstractType or array of AbstractTypes
      * @return boolean
      */
-    public function matches(AbstractType $type)
+    public function matches($types)
     {
-        return $type->matches($this->content);
+        if (! is_array($types)) {
+            $types = [$types];
+        }
+
+        $types = array_map(function ($value) {
+            if (is_a($value, AbstractType::class)) {
+                return $value;
+            }
+
+            if (class_exists($value)) {
+                return new $value;
+            }
+        }, $types);
+
+        $types = array_filter($types, function ($type) {
+            return is_a($type, AbstractType::class);
+        });
+
+        foreach ($types as $type) {
+            if ($type->matches($this->content)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
