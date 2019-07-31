@@ -23,6 +23,12 @@ $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 
 // you can also check, if the content matches a specific type
 $bool = $sniffer->matches(new ImageJpeg);
+
+// or check, if the content matches an array of types
+$bool = $sniffer->matches([ImageJpeg::class, ImageGif::class]);
+
+// or check, if the content matches an array of type objects
+$bool = $sniffer->matches([new ImageJpeg, $type]);
 ```
 
 If your prefer non-static initialization:
