@@ -55,6 +55,7 @@ $bool = $sniffer->matches(new ImageJpeg);
 ### Other
 
 - PDF document
+- OGG media container
 - application/octet-stream (default binary)
 - text/plain (default)
 
