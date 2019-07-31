@@ -54,7 +54,8 @@ $bool = $sniffer->matches(new ImageJpeg);
 
 ### Audio
 
-- FLAC files
+- MP3 file
+- FLAC file
 
 ### Other
 
