@@ -25,6 +25,21 @@ $type = (string) $type; // cast type to string (e.g. "image/jpeg")
 $bool = $sniffer->matches(new ImageJpeg);
 ```
 
+If your prefer non-static initialization.
+
+```php
+use Intervention\MimeSniffer\MimeSniffer;
+
+// create instance with constructor
+$sniffer = new MimeSniffer($content);
+
+// with setter for given content
+$sniffer->setFromFilename($other_content);
+
+// or with setter for filename
+$sniffer->setFromFilename('image.jpg');
+```
+
 **Currently only the following file types can be detected. More will be added in a next release.**
 
 ### Images

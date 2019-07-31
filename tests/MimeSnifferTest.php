@@ -15,6 +15,9 @@ class MimeSnifferTest extends TestCase
     {
         $sniffer = new MimeSniffer('foo');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
+
+        $sniffer = new MimeSniffer;
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
     public function testCreateFromString()
@@ -26,6 +29,20 @@ class MimeSnifferTest extends TestCase
     public function testCreateFromFilename()
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.jpg');
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
+    }
+
+    public function testSetFromString()
+    {
+        $sniffer = new MimeSniffer;
+        $sniffer = $sniffer->setFromString('foo');
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
+    }
+
+    public function testSetFromFilename()
+    {
+        $sniffer = new MimeSniffer;
+        $sniffer = $sniffer->setFromFilename(__DIR__ . '/../tests/stubs/zip');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 

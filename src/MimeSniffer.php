@@ -16,9 +16,9 @@ class MimeSniffer
      *
      * @param string $content
      */
-    public function __construct($content)
+    public function __construct($content = '')
     {
-        $this->content = strval($content);
+        $this->setFromString($content);
     }
 
     /**
@@ -34,6 +34,20 @@ class MimeSniffer
     }
 
     /**
+     * Load contents of given string into instance
+     *
+     * @param string $content
+     *
+     * @return MimeSniffer
+     */
+    public function setFromString($content)
+    {
+        $this->content = strval($content);
+
+        return $this;
+    }
+
+    /**
      * Create a new instance and load contents of given filename
      *
      * @param string $filename
@@ -42,11 +56,23 @@ class MimeSniffer
      */
     public static function createFromFilename($filename)
     {
+        return (new self)->setFromFilename($filename);
+    }
+
+    /**
+     * Load contents of given filename in current instance
+     *
+     * @param string $filename
+     *
+     * @return MimeSniffer
+     */
+    public function setFromFilename($filename)
+    {
         $fp = fopen($filename, 'r');
-        $content = fread($fp, 1024);
+        $this->setFromString(fread($fp, 1024));
         fclose($fp);
 
-        return new self($content);
+        return $this;
     }
 
     /**
