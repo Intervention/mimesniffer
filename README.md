@@ -43,10 +43,10 @@ use Intervention\MimeSniffer\MimeSniffer;
 $sniffer = new MimeSniffer($content);
 
 // with setter for given content
-$type = $sniffer->setFromFilename($other_content)->getType();
+$type = $sniffer->setFromString($other_content)->getType();
 
 // or with setter for filename
-$type = $sniffer->setFromFilename('image.jpg')->getType();
+$type = $sniffer->setFromFilename('images/image.jpg')->getType();
 ```
 
 **Currently only the following file types can be detected. More will be added in a next release.**
