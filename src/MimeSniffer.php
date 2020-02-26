@@ -28,7 +28,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public static function createFromString($content)
+    public static function createFromString(string $content): MimeSniffer
     {
         return new self($content);
     }
@@ -40,7 +40,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public function setFromString($content)
+    public function setFromString(string $content): MimeSniffer
     {
         $this->content = strval($content);
 
@@ -54,7 +54,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public static function createFromFilename($filename)
+    public static function createFromFilename(string $filename): MimeSniffer
     {
         return (new self)->setFromFilename($filename);
     }
@@ -66,7 +66,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public function setFromFilename($filename)
+    public function setFromFilename(string $filename): MimeSniffer
     {
         $fp = fopen($filename, 'r');
         $this->setFromString(fread($fp, 1024));
@@ -80,7 +80,7 @@ class MimeSniffer
      *
      * @return AbstractType
      */
-    public function getType()
+    public function getType(): AbstractType
     {
         foreach ($this->getTypeClassnames() as $classname) {
             $type = new $classname;
@@ -104,7 +104,7 @@ class MimeSniffer
      * @param  AbstractType|array $types AbstractType or array of AbstractTypes
      * @return boolean
      */
-    public function matches($types)
+    public function matches($types): bool
     {
         if (! is_array($types)) {
             $types = [$types];
@@ -138,7 +138,7 @@ class MimeSniffer
      *
      * @return array
      */
-    private function getTypeClassnames()
+    private function getTypeClassnames(): array
     {
         $files = array_diff(scandir(__DIR__ . '/Types'), ['.', '..']);
 

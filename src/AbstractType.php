@@ -24,7 +24,7 @@ abstract class AbstractType
      * @param  string $content
      * @return bool
      */
-    public function matches($content)
+    public function matches(string $content): bool
     {
         return preg_match($this->pattern, $this->prepareContent($content)) === 1;
     }
@@ -34,7 +34,7 @@ abstract class AbstractType
      *
      * @return boolean
      */
-    public function isImage()
+    public function isImage(): bool
     {
         return substr($this->name, 0, 5) === 'image';
     }
@@ -44,7 +44,7 @@ abstract class AbstractType
      *
      * @return boolean
      */
-    public function isVideo()
+    public function isVideo(): bool
     {
         return substr($this->name, 0, 5) === 'video';
     }
@@ -54,7 +54,7 @@ abstract class AbstractType
      *
      * @return boolean
      */
-    public function isAudio()
+    public function isAudio(): bool
     {
         return substr($this->name, 0, 5) === 'audio';
     }
@@ -64,7 +64,7 @@ abstract class AbstractType
      *
      * @return boolean
      */
-    public function isArchive()
+    public function isArchive(): bool
     {
         return in_array($this->name, [
             'application/zip',
@@ -80,7 +80,7 @@ abstract class AbstractType
      * @param  string $content
      * @return string
      */
-    public function prepareContent($content)
+    public function prepareContent(string $content): string
     {
         return substr($content, 0, 1024);
     }
@@ -90,7 +90,7 @@ abstract class AbstractType
      *
      * @return boolean
      */
-    public function isBinary()
+    public function isBinary(): bool
     {
         return false;
     }
@@ -100,7 +100,7 @@ abstract class AbstractType
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->name;
     }

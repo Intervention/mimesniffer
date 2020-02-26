@@ -10,7 +10,7 @@ abstract class AbstractBinaryType extends AbstractType
      * @param  string $content
      * @return string
      */
-    public function prepareContent($content)
+    public function prepareContent(string $content): string
     {
         return strtoupper(substr(bin2hex($content), 0, 1024));
     }
@@ -20,7 +20,7 @@ abstract class AbstractBinaryType extends AbstractType
      *
      * @return boolean
      */
-    public function isBinary()
+    public function isBinary(): bool
     {
         return true;
     }
