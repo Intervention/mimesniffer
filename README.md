@@ -85,6 +85,7 @@ $type = $sniffer->setFromFilename('images/image.jpg')->getType();
 
 - PDF document
 - OGG media container
+- SQLite Database
 - application/octet-stream (default binary)
 - text/plain (default)
 
