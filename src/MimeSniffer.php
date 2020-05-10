@@ -56,7 +56,7 @@ class MimeSniffer
      */
     public static function createFromFilename(string $filename): MimeSniffer
     {
-        return (new self)->setFromFilename($filename);
+        return (new self())->setFromFilename($filename);
     }
 
     /**
@@ -83,18 +83,18 @@ class MimeSniffer
     public function getType(): AbstractType
     {
         foreach ($this->getTypeClassnames() as $classname) {
-            $type = new $classname;
+            $type = new $classname();
             if ($type->matches($this->content)) {
                 return $type;
             }
         }
 
-        $binaryType = new Types\ApplicationOctetStream;
+        $binaryType = new Types\ApplicationOctetStream();
         if ($this->matches($binaryType)) {
             return $binaryType;
         }
 
-        return new Types\TextPlain;
+        return new Types\TextPlain();
     }
 
     /**
@@ -116,7 +116,7 @@ class MimeSniffer
             }
 
             if (class_exists($value)) {
-                return new $value;
+                return new $value();
             }
         }, $types);
 

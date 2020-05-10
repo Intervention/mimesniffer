@@ -28,7 +28,7 @@ class AbstractTypeTest extends TestCase
     public function testPrepareContent()
     {
         $content = '';
-        for ($i=0; $i < 2048; $i++) {
+        for ($i = 0; $i < 2048; $i++) {
             $content .= 'x';
         }
 
