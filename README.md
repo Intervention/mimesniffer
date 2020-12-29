@@ -57,6 +57,7 @@ $type = $sniffer->setFromFilename('images/image.jpg')->getType();
 - Image file encoded in the Graphics Interchange Format (GIF)
 - Image encoded in the Portable Network Graphics format (PNG)
 - Image encoded as BMP file, a bitmap format
+- Image encoded in High Efficiency Image File Format (HEIC/HEIF)
 - Icon encoded in ICO file format
 - Image in Google WebP image format
 - Scalable Vector Graphics (SVG)
