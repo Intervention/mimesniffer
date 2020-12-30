@@ -1,4 +1,4 @@
-# A class to detect mime types of given contents
+# PHP Media type (MIME) detector
 
 ![build](https://github.com/Intervention/mimesniffer/workflows/build/badge.svg)
 
