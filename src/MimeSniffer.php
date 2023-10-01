@@ -115,7 +115,7 @@ class MimeSniffer
                 return $value;
             }
 
-            if (class_exists($value)) {
+            if (!is_null($value) && class_exists($value)) {
                 return new $value();
             }
         }, $types);

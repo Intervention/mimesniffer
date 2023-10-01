@@ -108,6 +108,20 @@ Contributions are welcome. Please note the following guidelines before submiting
 - Follow [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards.
 - Write tests for new functions and added features
 
+## Development & Testing
+
+With this package comes a Docker image to build a test suite and analysis container. To build this container you have to have Docker installed on your system. You can run all tests with this command.
+
+```bash
+docker-compose run --rm --build tests
+```
+
+Run the static analyzer on the code base.
+
+```bash
+docker-compose run --rm --build analysis
+```
+
 ## License
 
 Licensed under the [MIT License](http://opensource.org/licenses/MIT).
