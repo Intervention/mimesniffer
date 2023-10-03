@@ -13,7 +13,7 @@ class ImageAvifTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/stubs/avif');
+        $this->sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.avif');
         $this->type = $this->sniffer->getType();
     }
 

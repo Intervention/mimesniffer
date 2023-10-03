@@ -16,7 +16,9 @@ class ImageAvif extends AbstractBinaryType
     /**
      * Signature pattern
      *
+     * ftyp(avif)
+     *
      * @var string
      */
-    protected $pattern = "/^0000001C66747970/";
+    protected $pattern = "/66747970(61766966)/";
 }
