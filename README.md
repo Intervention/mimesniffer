@@ -74,6 +74,7 @@ $type = $sniffer->setFromFilename('images/image.jpg')->getType();
 - Scalable Vector Graphics (SVG)
 - Tagged Image File Format (TIFF)
 - Image encoded Photoshop Document file format (PSD)
+- AV1 Image File Format (AVIF)
 
 ### Archives
 
