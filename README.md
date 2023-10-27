@@ -136,4 +136,4 @@ docker-compose run --rm --build analysis
 
 Licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
-Copyright 2019 [Oliver Vogel](https://olivervogel.com/)
+Copyright 2019 [Oliver Vogel](https://intervention.io/)
