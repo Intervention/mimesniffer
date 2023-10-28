@@ -1,6 +1,6 @@
 # PHP Media type (MIME) detector
 
-![build](https://github.com/Intervention/mimesniffer/workflows/build/badge.svg)
+![build](https://github.com/Intervention/mimesniffer/actions/workflows/build.yml/badge.svg)
 
 Detecting MIME Content-type in PHP is easy with
 [mime_content_type](https://www.php.net/manual/en/function.mime-content-type.php)
