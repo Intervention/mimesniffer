@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImagePsd;
 
-class ImagePsdTest extends TestCase
+final class ImagePsdTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class ImagePsdTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ImagePsd::class, $this->type);
     }
 
-    public function testIsImage()
+    public function testIsImage(): void
     {
         $this->assertTrue($this->type->isImage());
     }

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\AudioMpeg;
 
-class AudioMpegId3v2Test extends TestCase
+final class AudioMpegId3v2Test extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class AudioMpegId3v2Test extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(AudioMpeg::class, $this->type);
     }
 
-    public function testIsAudio()
+    public function testIsAudio(): void
     {
         $this->assertTrue($this->type->isAudio());
     }

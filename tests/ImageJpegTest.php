@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 
-class ImageJpegTest extends TestCase
+final class ImageJpegTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class ImageJpegTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ImageJpeg::class, $this->type);
     }
 
-    public function testIsImage()
+    public function testIsImage(): void
     {
         $this->assertTrue($this->type->isImage());
     }

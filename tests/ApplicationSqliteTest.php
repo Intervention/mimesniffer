@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ApplicationSqlite;
 
-class ApplicationSqliteTest extends TestCase
+final class ApplicationSqliteTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,7 +17,7 @@ class ApplicationSqliteTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ApplicationSqlite::class, $this->type);
     }

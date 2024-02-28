@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ApplicationTar;
 
-class ApplicationTarTest extends TestCase
+final class ApplicationTarTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class ApplicationTarTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ApplicationTar::class, $this->type);
     }
 
-    public function testIsArchive()
+    public function testIsArchive(): void
     {
         $this->assertTrue($this->type->isArchive());
     }
