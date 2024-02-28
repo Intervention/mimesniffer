@@ -5,9 +5,9 @@ namespace Intervention\MimeSniffer\Test;
 use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\AbstractBinaryType;
 
-class AbstractBinaryTypeTest extends TestCase
+final class AbstractBinaryTypeTest extends TestCase
 {
-    public function testPrepareContent()
+    public function testPrepareContent(): void
     {
         $content = '';
         for ($i = 0; $i < 2048; $i++) {
@@ -19,7 +19,7 @@ class AbstractBinaryTypeTest extends TestCase
         $this->assertEquals('78787878', substr($type->prepareContent($content), 0, 8));
     }
 
-    public function testIsBinary()
+    public function testIsBinary(): void
     {
         $type = $this->getMockForAbstractClass(AbstractBinaryType::class);
         $this->assertTrue($type->isBinary());

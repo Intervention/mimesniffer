@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ApplicationZip;
 
-class ApplicationZipTest extends TestCase
+final class ApplicationZipTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class ApplicationZipTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ApplicationZip::class, $this->type);
     }
 
-    public function testIsArchive()
+    public function testIsArchive(): void
     {
         $this->assertTrue($this->type->isArchive());
     }

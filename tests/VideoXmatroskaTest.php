@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\VideoXmatroska;
 
-class VideoXmatroskaTest extends TestCase
+final class VideoXmatroskaTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,17 +17,17 @@ class VideoXmatroskaTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(VideoXmatroska::class, $this->type);
     }
 
-    public function testIsImage()
+    public function testIsImage(): void
     {
         $this->assertFalse($this->type->isImage());
     }
 
-    public function testIsVideo()
+    public function testIsVideo(): void
     {
         $this->assertTrue($this->type->isVideo());
     }

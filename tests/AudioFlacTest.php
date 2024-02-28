@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\AudioFlac;
 
-class AudioFlacTest extends TestCase
+final class AudioFlacTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class AudioFlacTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(AudioFlac::class, $this->type);
     }
 
-    public function testIsImage()
+    public function testIsImage(): void
     {
         $this->assertFalse($this->type->isImage());
     }

@@ -11,9 +11,9 @@ use Intervention\MimeSniffer\Types\ImagePng;
 use Intervention\MimeSniffer\Types\TextPlain;
 use PHPUnit\Framework\TestCase;
 
-class MimeSnifferTest extends TestCase
+final class MimeSnifferTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $sniffer = new MimeSniffer('foo');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
@@ -22,40 +22,40 @@ class MimeSnifferTest extends TestCase
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
-    public function testCreateFromString()
+    public function testCreateFromString(): void
     {
         $sniffer = MimeSniffer::createFromString('foo');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
-    public function testCreateFromFilename()
+    public function testCreateFromFilename(): void
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.jpg');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
-    public function testSetFromString()
+    public function testSetFromString(): void
     {
         $sniffer = new MimeSniffer();
         $sniffer = $sniffer->setFromString('foo');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
-    public function testSetFromFilename()
+    public function testSetFromFilename(): void
     {
         $sniffer = new MimeSniffer();
         $sniffer = $sniffer->setFromFilename(__DIR__ . '/../tests/stubs/zip');
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
-    public function testMatchesType()
+    public function testMatchesType(): void
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.gif');
         $this->assertTrue($sniffer->matches(new ImageGif()));
         $this->assertFalse($sniffer->matches(new ImageJpeg()));
     }
 
-    public function testMatchesArray()
+    public function testMatchesArray(): void
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.gif');
         $this->assertTrue($sniffer->matches([new ImageJpeg(), new ImagePng(), new ImageGif()]));
@@ -64,7 +64,7 @@ class MimeSnifferTest extends TestCase
         $this->assertFalse($sniffer->matches([ImageJpeg::class, ImagePng::class]));
     }
 
-    public function testMatchesBogus()
+    public function testMatchesBogus(): void
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/stubs/zip');
         $this->assertFalse($sniffer->matches('foo'));

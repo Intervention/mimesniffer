@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageHeif;
 
-class ImageHeifTest extends TestCase
+final class ImageHeifTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -17,12 +17,12 @@ class ImageHeifTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ImageHeif::class, $this->type);
     }
 
-    public function testIsImage()
+    public function testIsImage(): void
     {
         $this->assertTrue($this->type->isImage());
     }

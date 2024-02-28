@@ -8,7 +8,7 @@ use Intervention\MimeSniffer\Types\ImageSvg;
 use Intervention\MimeSniffer\Types\TextPlain;
 use PHPUnit\Framework\TestCase;
 
-class ImageSvgTest extends TestCase
+final class ImageSvgTest extends TestCase
 {
     public $sniffer;
     public $type;
@@ -19,23 +19,23 @@ class ImageSvgTest extends TestCase
         $this->type = $this->sniffer->getType();
     }
 
-    public function testType()
+    public function testType(): void
     {
         $this->assertInstanceOf(ImageSvg::class, $this->type);
     }
 
-    public function testIsImage()
+    public function testIsImage(): void
     {
         $this->assertTrue($this->type->isImage());
     }
 
-    public function testPlainXmlIsNotSvg()
+    public function testPlainXmlIsNotSvg(): void
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/files/test.xml');
         $this->assertInstanceOf(TextPlain::class, $sniffer->getType());
     }
 
-    public function testSvgWithoutXmlTag()
+    public function testSvgWithoutXmlTag(): void
     {
         $sniffer = MimeSniffer::createFromFilename(__DIR__ . '/../tests/stubs/svg');
         $this->assertInstanceOf(ImageSvg::class, $sniffer->getType());
