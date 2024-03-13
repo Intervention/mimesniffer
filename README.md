@@ -132,8 +132,10 @@ Run the static analyzer on the code base.
 docker-compose run --rm --build analysis
 ```
 
+## Authors
+
+This library is developed and maintained by [Oliver Vogel](https://intervention.io)
+
 ## License
 
-Licensed under the [MIT License](http://opensource.org/licenses/MIT).
-
-Copyright 2019 [Oliver Vogel](https://intervention.io/)
+Intervention MimeSniffer is licensed under the [MIT License](LICENSE).
