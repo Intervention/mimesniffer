@@ -64,7 +64,7 @@ If your prefer non-static initialization:
 use Intervention\MimeSniffer\MimeSniffer;
 
 // create instance with constructor
-$sniffer = new MimeSniffer();
+$sniffer = new MimeSniffer($content);
 
 // with setter for given content
 $type = $sniffer->setFromString($other_content)->getType();

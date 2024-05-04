@@ -18,6 +18,21 @@ final class MimeSnifferTest extends TestCase
     {
         $sniffer = new MimeSniffer();
         $this->assertInstanceOf(MimeSniffer::class, $sniffer);
+
+        $sniffer = new MimeSniffer(
+            __DIR__ . '/../tests/files/test.jpg',
+        );
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
+
+        $sniffer = new MimeSniffer(
+            fopen(__DIR__ . '/../tests/files/test.jpg', 'r')
+        );
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
+
+        $sniffer = new MimeSniffer(
+            'foo'
+        );
+        $this->assertInstanceOf(MimeSniffer::class, $sniffer);
     }
 
     public function testCreate(): void

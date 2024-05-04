@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Intervention\MimeSniffer;
 
 use Intervention\MimeSniffer\Interfaces\TypeInterface;
+use InvalidArgumentException;
+use RuntimeException;
 
 class MimeSniffer
 {
@@ -16,6 +18,27 @@ class MimeSniffer
     protected string $content;
 
     /**
+     * Create new instance
+     *
+     * @param mixed $content
+     * @return void
+     */
+    public function __construct(mixed $content = null)
+    {
+        if (is_string($content) && file_exists($content)) {
+            $this->setFromFilename($content);
+        }
+
+        if (is_string($content)) {
+            $this->setFromString($content);
+        }
+
+        if (is_resource($content)) {
+            $this->setFromPointer($content);
+        }
+    }
+
+    /**
      * Universal factory method
      *
      * @param mixed $content
@@ -23,19 +46,7 @@ class MimeSniffer
      */
     public static function create(mixed $content): self
     {
-        if (is_string($content) && file_exists($content)) {
-            return self::createFromFilename($content);
-        }
-
-        if (is_string($content)) {
-            return self::createFromString($content);
-        }
-
-        if (is_resource($content)) {
-            return self::createFromPointer($content);
-        }
-
-        return new self();
+        return new self($content);
     }
 
     /**
@@ -113,6 +124,10 @@ class MimeSniffer
      */
     public function setFromPointer($pointer): self
     {
+        if (!is_resource($pointer)) {
+            throw new InvalidArgumentException('Argument #1 $pointer must be of type resource.');
+        }
+
         $this->setFromString(fread($pointer, 1024));
 
         return $this;
