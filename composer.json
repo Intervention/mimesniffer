@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Intervention\\MimeSniffer\\Test\\": "tests"
+            "Intervention\\MimeSniffer\\Tests\\": "tests"
         }
     },
     "minimum-stability": "stable"

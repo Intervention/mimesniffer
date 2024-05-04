@@ -1,6 +1,6 @@
 <?php
 
-namespace Intervention\MimeSniffer\Test;
+namespace Intervention\MimeSniffer\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;

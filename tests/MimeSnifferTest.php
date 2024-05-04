@@ -1,14 +1,12 @@
 <?php
 
-namespace Intervention\MimeSniffer\Test;
+namespace Intervention\MimeSniffer\Tests;
 
-use Intervention\MimeSniffer\Exceptions\NotMatchingException;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ApplicationZip;
 use Intervention\MimeSniffer\Types\ImageGif;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 use Intervention\MimeSniffer\Types\ImagePng;
-use Intervention\MimeSniffer\Types\TextPlain;
 use PHPUnit\Framework\TestCase;
 
 final class MimeSnifferTest extends TestCase
