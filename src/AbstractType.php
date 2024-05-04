@@ -23,7 +23,7 @@ abstract class AbstractType
     /**
      * Determine if the given content matches the signature
      *
-     * @param  string $content
+     * @param string $content
      * @return bool
      */
     public function matches(string $content): bool
@@ -34,7 +34,7 @@ abstract class AbstractType
     /**
      * Determine if the detected type is an image
      *
-     * @return boolean
+     * @return bool
      */
     public function isImage(): bool
     {
@@ -44,7 +44,7 @@ abstract class AbstractType
     /**
      * Determine if the detected type is an video
      *
-     * @return boolean
+     * @return bool
      */
     public function isVideo(): bool
     {
@@ -54,7 +54,7 @@ abstract class AbstractType
     /**
      * Determine if the detected type is an audio file
      *
-     * @return boolean
+     * @return bool
      */
     public function isAudio(): bool
     {
@@ -64,7 +64,7 @@ abstract class AbstractType
     /**
      * Determine if the detected type is an archive
      *
-     * @return boolean
+     * @return bool
      */
     public function isArchive(): bool
     {
@@ -79,7 +79,7 @@ abstract class AbstractType
     /**
      * Prepare content (can be extended by child classes)
      *
-     * @param  string $content
+     * @param string $content
      * @return string
      */
     public function prepareContent(string $content): string
@@ -90,7 +90,7 @@ abstract class AbstractType
     /**
      * Determine of current type is binary
      *
-     * @return boolean
+     * @return bool
      */
     public function isBinary(): bool
     {

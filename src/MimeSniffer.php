@@ -30,7 +30,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public static function createFromString(string $content): MimeSniffer
+    public static function createFromString(string $content): self
     {
         return new self($content);
     }
@@ -42,7 +42,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public function setFromString(string $content): MimeSniffer
+    public function setFromString(string $content): self
     {
         $this->content = strval($content);
 
@@ -56,7 +56,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public static function createFromFilename(string $filename): MimeSniffer
+    public static function createFromFilename(string $filename): self
     {
         return (new self())->setFromFilename($filename);
     }
@@ -68,7 +68,7 @@ class MimeSniffer
      *
      * @return MimeSniffer
      */
-    public function setFromFilename(string $filename): MimeSniffer
+    public function setFromFilename(string $filename): self
     {
         $fp = fopen($filename, 'r');
         $this->setFromString(fread($fp, 1024));
@@ -102,8 +102,8 @@ class MimeSniffer
     /**
      * Determine if content matches the given type or any if the given types in array
      *
-     * @param  AbstractType|string|array<AbstractType|string> $types
-     * @return boolean
+     * @param AbstractType|string|array<AbstractType|string> $types
+     * @return bool
      */
     public function matches(AbstractType|string|array $types): bool
     {
