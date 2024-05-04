@@ -6,7 +6,6 @@ namespace Intervention\MimeSniffer;
 
 use Intervention\MimeSniffer\Interfaces\TypeInterface;
 use InvalidArgumentException;
-use RuntimeException;
 
 class MimeSniffer
 {
@@ -21,6 +20,7 @@ class MimeSniffer
      * Create new instance
      *
      * @param mixed $content
+     * @throws InvalidArgumentException
      * @return void
      */
     public function __construct(mixed $content = null)
@@ -42,6 +42,7 @@ class MimeSniffer
      * Universal factory method
      *
      * @param mixed $content
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public static function create(mixed $content): self
@@ -53,7 +54,7 @@ class MimeSniffer
      * Create new instance from given string
      *
      * @param string $content
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public static function createFromString(string $content): self
@@ -65,7 +66,7 @@ class MimeSniffer
      * Load contents of given string into instance
      *
      * @param string $content
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public function setFromString(string $content): self
@@ -79,7 +80,7 @@ class MimeSniffer
      * Create a new instance and load contents of given filename
      *
      * @param string $filename
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public static function createFromFilename(string $filename): self
@@ -91,7 +92,7 @@ class MimeSniffer
      * Load contents of given filename in current instance
      *
      * @param string $filename
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public function setFromFilename(string $filename): self
@@ -107,7 +108,7 @@ class MimeSniffer
      * Create a new instance and load contents of given filename
      *
      * @param resource $pointer
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public static function createFromPointer($pointer): self
@@ -118,8 +119,8 @@ class MimeSniffer
     /**
      * Load contents of given filename in current instance
      *
+     * @throws InvalidArgumentException
      * @param resource $pointer
-     *
      * @return MimeSniffer
      */
     public function setFromPointer($pointer): self
