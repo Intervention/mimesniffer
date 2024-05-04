@@ -26,11 +26,17 @@ Here are some code samples, to show how the library is handled.
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 
-// detect given string
+// universal factory method
+$sniffer = MimeSniffer::create($content);
+
+// or detect given string
 $sniffer = MimeSniffer::createFromString($content);
 
 // or detect given file
 $sniffer = MimeSniffer::createFromFilename('image.jpg');
+
+// or detect from file pointer
+$sniffer = MimeSniffer::createFromFilename(fopen('test.jpg', 'r'));
 
 // returns object of detected type 
 $type = $sniffer->getType(); 
@@ -58,13 +64,16 @@ If your prefer non-static initialization:
 use Intervention\MimeSniffer\MimeSniffer;
 
 // create instance with constructor
-$sniffer = new MimeSniffer($content);
+$sniffer = new MimeSniffer();
 
 // with setter for given content
 $type = $sniffer->setFromString($other_content)->getType();
 
 // or with setter for filename
 $type = $sniffer->setFromFilename('images/image.jpg')->getType();
+
+// or with setter for file pointer
+$type = $sniffer->setFromPointer(fopen('images/image.jpg', 'r'))->getType();
 ```
 
 **Currently only the following file types can be detected. More will be added in a next release.**

@@ -7,20 +7,33 @@ namespace Intervention\MimeSniffer;
 class MimeSniffer
 {
     /**
-     * Content to search
+     * Content to detect mime type from
      *
      * @var string
      */
-    protected $content;
+    protected string $content;
 
     /**
-     * Create new instance
+     * Universal factory method
      *
-     * @param string $content
+     * @param mixed $content
+     * @return MimeSniffer
      */
-    public function __construct($content = '')
+    public static function create(mixed $content): self
     {
-        $this->setFromString($content);
+        if (is_string($content) && file_exists($content)) {
+            return self::createFromFilename($content);
+        }
+
+        if (is_string($content)) {
+            return self::createFromString($content);
+        }
+
+        if (is_resource($content)) {
+            return self::createFromPointer($content);
+        }
+
+        return new self();
     }
 
     /**
@@ -32,7 +45,7 @@ class MimeSniffer
      */
     public static function createFromString(string $content): self
     {
-        return new self($content);
+        return (new self())->setFromString($content);
     }
 
     /**
@@ -44,7 +57,7 @@ class MimeSniffer
      */
     public function setFromString(string $content): self
     {
-        $this->content = strval($content);
+        $this->content = $content;
 
         return $this;
     }
@@ -73,6 +86,32 @@ class MimeSniffer
         $fp = fopen($filename, 'r');
         $this->setFromString(fread($fp, 1024));
         fclose($fp);
+
+        return $this;
+    }
+
+    /**
+     * Create a new instance and load contents of given filename
+     *
+     * @param resource $pointer
+     *
+     * @return MimeSniffer
+     */
+    public static function createFromPointer($pointer): self
+    {
+        return (new self())->setFromPointer($pointer);
+    }
+
+    /**
+     * Load contents of given filename in current instance
+     *
+     * @param resource $pointer
+     *
+     * @return MimeSniffer
+     */
+    public function setFromPointer($pointer): self
+    {
+        $this->setFromString(fread($pointer, 1024));
 
         return $this;
     }
