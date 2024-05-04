@@ -98,30 +98,34 @@ class MimeSniffer
     }
 
     /**
-     * Determine if content matches the given type
-     * or any if the given types in array
+     * Determine if content matches the given type or any if the given types in array
      *
-     * @param  AbstractType|array $types AbstractType or array of AbstractTypes
+     * @param  AbstractType|string|array<AbstractType|string> $types
      * @return boolean
      */
-    public function matches($types): bool
+    public function matches(AbstractType|string|array $types): bool
     {
-        if (! is_array($types)) {
+        if (!is_array($types)) {
             $types = [$types];
         }
 
-        $types = array_map(function ($value) {
-            if (is_a($value, AbstractType::class)) {
-                return $value;
-            }
+        $types = array_filter($types, function ($type) {
+            return match (true) {
+                ($type instanceof AbstractType) => true,
+                is_string($type) && class_exists($type) => true,
+                default => false,
+            };
+        });
 
-            if (!is_null($value) && class_exists($value)) {
-                return new $value();
-            }
+        $types = array_map(function ($type) {
+            return match (true) {
+                is_string($type) => new $type(),
+                default => $type,
+            };
         }, $types);
 
         $types = array_filter($types, function ($type) {
-            return is_a($type, AbstractType::class);
+            return $type instanceof AbstractType;
         });
 
         foreach ($types as $type) {
@@ -136,7 +140,7 @@ class MimeSniffer
     /**
      * Return array of type classnames
      *
-     * @return array
+     * @return array<string>
      */
     private function getTypeClassnames(): array
     {
@@ -147,7 +151,7 @@ class MimeSniffer
         }, $files);
 
         return array_filter($classnames, function ($classname) {
-            return ! in_array($classname, [
+            return !in_array($classname, [
                 Types\ApplicationOctetStream::class,
                 Types\TextPlain::class,
             ]);

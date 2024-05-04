@@ -8,6 +8,7 @@ use Intervention\MimeSniffer\Types\ImageGif;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 use Intervention\MimeSniffer\Types\ImagePng;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 final class MimeSnifferTest extends TestCase
 {
@@ -60,6 +61,10 @@ final class MimeSnifferTest extends TestCase
         $this->assertFalse($sniffer->matches([new ImageJpeg(), new ImagePng()]));
         $this->assertTrue($sniffer->matches([ImageJpeg::class, ImagePng::class, ImageGif::class]));
         $this->assertFalse($sniffer->matches([ImageJpeg::class, ImagePng::class]));
+        $this->assertFalse($sniffer->matches([ImageJpeg::class, new ImagePng()]));
+        $this->assertFalse($sniffer->matches(['foo', new stdClass()]));
+        $this->assertTrue($sniffer->matches(['foo', new stdClass(), new ImageGif()]));
+        $this->assertTrue($sniffer->matches(['foo', new stdClass(), ImageGif::class]));
     }
 
     public function testMatchesBogus(): void
@@ -68,7 +73,6 @@ final class MimeSnifferTest extends TestCase
         $this->assertFalse($sniffer->matches('foo'));
         $this->assertFalse($sniffer->matches(['foo', 'bar']));
         $this->assertFalse($sniffer->matches([]));
-        $this->assertFalse($sniffer->matches(null));
         $this->assertTrue($sniffer->matches(['foo', ApplicationZip::class]));
     }
 }
