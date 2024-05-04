@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\MimeSniffer;
 
-abstract class AbstractType
+use Intervention\MimeSniffer\Interfaces\TypeInterface;
+
+abstract class AbstractType implements TypeInterface
 {
     /**
      * Name of content type (mime type)
@@ -21,10 +23,9 @@ abstract class AbstractType
     protected $pattern = "/^$/";
 
     /**
-     * Determine if the given content matches the signature
+     * {@inheritdoc}
      *
-     * @param string $content
-     * @return bool
+     * @see TypeInterface::matches()
      */
     public function matches(string $content): bool
     {
@@ -32,9 +33,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an image
+     * {@inheritdoc}
      *
-     * @return bool
+     * @see TypeInterface::isImage()
      */
     public function isImage(): bool
     {
@@ -42,9 +43,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an video
+     * {@inheritdoc}
      *
-     * @return bool
+     * @see TypeInterface::isVideo()
      */
     public function isVideo(): bool
     {
@@ -52,9 +53,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an audio file
+     * {@inheritdoc}
      *
-     * @return bool
+     * @see TypeInterface::isAudio()
      */
     public function isAudio(): bool
     {
@@ -62,9 +63,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an archive
+     * {@inheritdoc}
      *
-     * @return bool
+     * @see TypeInterface::isArchive()
      */
     public function isArchive(): bool
     {
@@ -88,9 +89,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine of current type is binary
+     * {@inheritdoc}
      *
-     * @return bool
+     * @see TypeInterface::isBinary()
      */
     public function isBinary(): bool
     {
@@ -98,9 +99,9 @@ abstract class AbstractType
     }
 
     /**
-     * Cast type to string
+     * {@inheritdoc}
      *
-     * @return string
+     * @see TypeInterface::__toString()
      */
     public function __toString(): string
     {

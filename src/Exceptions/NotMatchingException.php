@@ -8,5 +8,4 @@ use RuntimeException;
 
 class NotMatchingException extends RuntimeException
 {
-    # nothing to override
 }

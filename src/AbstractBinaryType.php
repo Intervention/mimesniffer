@@ -18,9 +18,9 @@ abstract class AbstractBinaryType extends AbstractType
     }
 
     /**
-     * Determine of current type is binary
+     * {@inheritdoc}
      *
-     * @return bool
+     * @see TypeInterface::isBinary()
      */
     public function isBinary(): bool
     {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\MimeSniffer;
 
+use Intervention\MimeSniffer\Interfaces\TypeInterface;
+
 class MimeSniffer
 {
     /**
@@ -119,9 +121,9 @@ class MimeSniffer
     /**
      * Return detected type
      *
-     * @return AbstractType
+     * @return TypeInterface
      */
-    public function getType(): AbstractType
+    public function getType(): TypeInterface
     {
         foreach ($this->getTypeClassnames() as $classname) {
             $type = new $classname();
@@ -141,10 +143,10 @@ class MimeSniffer
     /**
      * Determine if content matches the given type or any if the given types in array
      *
-     * @param AbstractType|string|array<AbstractType|string> $types
+     * @param TypeInterface|string|array<TypeInterface|string> $types
      * @return bool
      */
-    public function matches(AbstractType|string|array $types): bool
+    public function matches(TypeInterface|string|array $types): bool
     {
         if (!is_array($types)) {
             $types = [$types];
@@ -152,7 +154,7 @@ class MimeSniffer
 
         $types = array_filter($types, function ($type) {
             return match (true) {
-                ($type instanceof AbstractType) => true,
+                ($type instanceof TypeInterface) => true,
                 is_string($type) && class_exists($type) => true,
                 default => false,
             };
@@ -166,7 +168,7 @@ class MimeSniffer
         }, $types);
 
         $types = array_filter($types, function ($type) {
-            return $type instanceof AbstractType;
+            return $type instanceof TypeInterface;
         });
 
         foreach ($types as $type) {
