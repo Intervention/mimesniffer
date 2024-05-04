@@ -1,8 +1,9 @@
 <?php
 
-namespace Intervention\MimeSniffer\Test;
+declare(strict_types=1);
 
-use Intervention\MimeSniffer\Exceptions\NotMatchingException;
+namespace Intervention\MimeSniffer\Tests;
+
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageSvg;
 use Intervention\MimeSniffer\Types\TextPlain;

@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Intervention\MimeSniffer;
 
-abstract class AbstractType
+use Intervention\MimeSniffer\Interfaces\TypeInterface;
+
+abstract class AbstractType implements TypeInterface
 {
     /**
      * Name of content type (mime type)
@@ -19,10 +23,9 @@ abstract class AbstractType
     protected $pattern = "/^$/";
 
     /**
-     * Determine if the given content matches the signature
+     * {@inheritdoc}
      *
-     * @param  string $content
-     * @return bool
+     * @see TypeInterface::matches()
      */
     public function matches(string $content): bool
     {
@@ -30,9 +33,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an image
+     * {@inheritdoc}
      *
-     * @return boolean
+     * @see TypeInterface::isImage()
      */
     public function isImage(): bool
     {
@@ -40,9 +43,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an video
+     * {@inheritdoc}
      *
-     * @return boolean
+     * @see TypeInterface::isVideo()
      */
     public function isVideo(): bool
     {
@@ -50,9 +53,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an audio file
+     * {@inheritdoc}
      *
-     * @return boolean
+     * @see TypeInterface::isAudio()
      */
     public function isAudio(): bool
     {
@@ -60,9 +63,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine if the detected type is an archive
+     * {@inheritdoc}
      *
-     * @return boolean
+     * @see TypeInterface::isArchive()
      */
     public function isArchive(): bool
     {
@@ -77,7 +80,7 @@ abstract class AbstractType
     /**
      * Prepare content (can be extended by child classes)
      *
-     * @param  string $content
+     * @param string $content
      * @return string
      */
     public function prepareContent(string $content): string
@@ -86,9 +89,9 @@ abstract class AbstractType
     }
 
     /**
-     * Determine of current type is binary
+     * {@inheritdoc}
      *
-     * @return boolean
+     * @see TypeInterface::isBinary()
      */
     public function isBinary(): bool
     {
@@ -96,9 +99,9 @@ abstract class AbstractType
     }
 
     /**
-     * Cast type to string
+     * {@inheritdoc}
      *
-     * @return string
+     * @see TypeInterface::__toString()
      */
     public function __toString(): string
     {

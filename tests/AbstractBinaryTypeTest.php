@@ -1,6 +1,8 @@
 <?php
 
-namespace Intervention\MimeSniffer\Test;
+declare(strict_types=1);
+
+namespace Intervention\MimeSniffer\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\AbstractBinaryType;

@@ -1,48 +1,77 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Intervention\MimeSniffer;
+
+use Intervention\MimeSniffer\Interfaces\TypeInterface;
+use InvalidArgumentException;
 
 class MimeSniffer
 {
     /**
-     * Content to search
+     * Content to detect mime type from
      *
      * @var string
      */
-    protected $content;
+    protected string $content;
 
     /**
      * Create new instance
      *
-     * @param string $content
+     * @param mixed $content
+     * @throws InvalidArgumentException
+     * @return void
      */
-    public function __construct($content = '')
+    public function __construct(mixed $content = null)
     {
-        $this->setFromString($content);
+        if (is_string($content) && file_exists($content)) {
+            $this->setFromFilename($content);
+        }
+
+        if (is_string($content)) {
+            $this->setFromString($content);
+        }
+
+        if (is_resource($content)) {
+            $this->setFromPointer($content);
+        }
+    }
+
+    /**
+     * Universal factory method
+     *
+     * @param mixed $content
+     * @throws InvalidArgumentException
+     * @return MimeSniffer
+     */
+    public static function create(mixed $content): self
+    {
+        return new self($content);
     }
 
     /**
      * Create new instance from given string
      *
      * @param string $content
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
-    public static function createFromString(string $content): MimeSniffer
+    public static function createFromString(string $content): self
     {
-        return new self($content);
+        return (new self())->setFromString($content);
     }
 
     /**
      * Load contents of given string into instance
      *
      * @param string $content
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
-    public function setFromString(string $content): MimeSniffer
+    public function setFromString(string $content): self
     {
-        $this->content = strval($content);
+        $this->content = $content;
 
         return $this;
     }
@@ -51,10 +80,10 @@ class MimeSniffer
      * Create a new instance and load contents of given filename
      *
      * @param string $filename
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
-    public static function createFromFilename(string $filename): MimeSniffer
+    public static function createFromFilename(string $filename): self
     {
         return (new self())->setFromFilename($filename);
     }
@@ -63,10 +92,10 @@ class MimeSniffer
      * Load contents of given filename in current instance
      *
      * @param string $filename
-     *
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
-    public function setFromFilename(string $filename): MimeSniffer
+    public function setFromFilename(string $filename): self
     {
         $fp = fopen($filename, 'r');
         $this->setFromString(fread($fp, 1024));
@@ -76,11 +105,41 @@ class MimeSniffer
     }
 
     /**
+     * Create a new instance and load contents of given filename
+     *
+     * @param resource $pointer
+     * @throws InvalidArgumentException
+     * @return MimeSniffer
+     */
+    public static function createFromPointer($pointer): self
+    {
+        return (new self())->setFromPointer($pointer);
+    }
+
+    /**
+     * Load contents of given filename in current instance
+     *
+     * @throws InvalidArgumentException
+     * @param resource $pointer
+     * @return MimeSniffer
+     */
+    public function setFromPointer($pointer): self
+    {
+        if (!is_resource($pointer)) {
+            throw new InvalidArgumentException('Argument #1 $pointer must be of type resource.');
+        }
+
+        $this->setFromString(fread($pointer, 1024));
+
+        return $this;
+    }
+
+    /**
      * Return detected type
      *
-     * @return AbstractType
+     * @return TypeInterface
      */
-    public function getType(): AbstractType
+    public function getType(): TypeInterface
     {
         foreach ($this->getTypeClassnames() as $classname) {
             $type = new $classname();
@@ -98,30 +157,34 @@ class MimeSniffer
     }
 
     /**
-     * Determine if content matches the given type
-     * or any if the given types in array
+     * Determine if content matches the given type or any if the given types in array
      *
-     * @param  AbstractType|array $types AbstractType or array of AbstractTypes
-     * @return boolean
+     * @param TypeInterface|string|array<TypeInterface|string> $types
+     * @return bool
      */
-    public function matches($types): bool
+    public function matches(TypeInterface|string|array $types): bool
     {
-        if (! is_array($types)) {
+        if (!is_array($types)) {
             $types = [$types];
         }
 
-        $types = array_map(function ($value) {
-            if (is_a($value, AbstractType::class)) {
-                return $value;
-            }
+        $types = array_filter($types, function ($type) {
+            return match (true) {
+                ($type instanceof TypeInterface) => true,
+                is_string($type) && class_exists($type) => true,
+                default => false,
+            };
+        });
 
-            if (!is_null($value) && class_exists($value)) {
-                return new $value();
-            }
+        $types = array_map(function ($type) {
+            return match (true) {
+                is_string($type) => new $type(),
+                default => $type,
+            };
         }, $types);
 
         $types = array_filter($types, function ($type) {
-            return is_a($type, AbstractType::class);
+            return $type instanceof TypeInterface;
         });
 
         foreach ($types as $type) {
@@ -136,7 +199,7 @@ class MimeSniffer
     /**
      * Return array of type classnames
      *
-     * @return array
+     * @return array<string>
      */
     private function getTypeClassnames(): array
     {
@@ -147,7 +210,7 @@ class MimeSniffer
         }, $files);
 
         return array_filter($classnames, function ($classname) {
-            return ! in_array($classname, [
+            return !in_array($classname, [
                 Types\ApplicationOctetStream::class,
                 Types\TextPlain::class,
             ]);

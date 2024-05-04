@@ -1,6 +1,8 @@
 <?php
 
-namespace Intervention\MimeSniffer\Test;
+declare(strict_types=1);
+
+namespace Intervention\MimeSniffer\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\AbstractType;
@@ -9,20 +11,17 @@ final class AbstractTypeTest extends TestCase
 {
     public function testToString(): void
     {
-        $type = $this->getMockForAbstractClass(AbstractType::class);
-        $this->assertEquals('', $type);
+        $this->assertEquals('', (string) $this->getTestAbstractType());
     }
 
     public function testMatches(): void
     {
-        $type = $this->getMockForAbstractClass(AbstractType::class);
-        $this->assertFalse($type->matches('test'));
+        $this->assertFalse($this->getTestAbstractType()->matches('test'));
     }
 
     public function testIsImage(): void
     {
-        $type = $this->getMockForAbstractClass(AbstractType::class);
-        $this->assertFalse($type->isImage());
+        $this->assertFalse($this->getTestAbstractType()->isImage());
     }
 
     public function testPrepareContent(): void
@@ -32,13 +31,18 @@ final class AbstractTypeTest extends TestCase
             $content .= 'x';
         }
 
-        $type = $this->getMockForAbstractClass(AbstractType::class);
-        $this->assertEquals(1024, strlen($type->prepareContent($content)));
+        $this->assertEquals(1024, strlen($this->getTestAbstractType()->prepareContent($content)));
     }
 
     public function testIsBinary(): void
     {
-        $type = $this->getMockForAbstractClass(AbstractType::class);
-        $this->assertFalse($type->isBinary());
+        $this->assertFalse($this->getTestAbstractType()->isBinary());
+    }
+
+    private function getTestAbstractType(): AbstractType
+    {
+        return new class () extends AbstractType
+        {
+        };
     }
 }

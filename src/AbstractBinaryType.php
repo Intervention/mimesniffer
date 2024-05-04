@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Intervention\MimeSniffer;
 
 abstract class AbstractBinaryType extends AbstractType
@@ -7,7 +9,7 @@ abstract class AbstractBinaryType extends AbstractType
     /**
      * Prepare content (can be extended by child classes)
      *
-     * @param  string $content
+     * @param string $content
      * @return string
      */
     public function prepareContent(string $content): string
@@ -16,9 +18,9 @@ abstract class AbstractBinaryType extends AbstractType
     }
 
     /**
-     * Determine of current type is binary
+     * {@inheritdoc}
      *
-     * @return boolean
+     * @see TypeInterface::isBinary()
      */
     public function isBinary(): bool
     {
