@@ -3,6 +3,7 @@
 [![Latest Version](https://img.shields.io/packagist/v/intervention/mimesniffer.svg)](https://packagist.org/packages/intervention/mimesniffer)
 [![Tests](https://github.com/Intervention/mimesniffer/actions/workflows/build.yml/badge.svg)](https://github.com/Intervention/mimesniffer/actions/workflows/build.yml)
 [![Monthly Downloads](https://img.shields.io/packagist/dm/intervention/mimesniffer.svg)](https://packagist.org/packages/intervention/mimesniffer/stats)
+[![Support me on Ko-fi](https://raw.githubusercontent.com/Intervention/mimesniffer/main/.github/images/support.svg)](https://ko-fi.com/interventionphp)
 
 Detecting MIME Content-type in PHP is easy with
 [mime_content_type](https://www.php.net/manual/en/function.mime-content-type.php)
