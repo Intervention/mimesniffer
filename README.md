@@ -94,6 +94,7 @@ $type = $sniffer->setFromPointer(fopen('images/image.jpg', 'r'))->getType();
 - Tagged Image File Format (TIFF)
 - Image encoded Photoshop Document file format (PSD)
 - AV1 Image File Format (AVIF)
+- JPEG 2000 File Format
 
 ### Archives
 
