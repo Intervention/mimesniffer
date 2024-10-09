@@ -25,17 +25,12 @@ class MimeSniffer
      */
     public function __construct(mixed $content = null)
     {
-        if (is_string($content) && file_exists($content)) {
-            $this->setFromFilename($content);
-        }
-
-        if (is_string($content)) {
-            $this->setFromString($content);
-        }
-
-        if (is_resource($content)) {
-            $this->setFromPointer($content);
-        }
+        match (true) {
+            is_string($content) && file_exists($content) => $this->setFromFilename($content),
+            is_string($content) => $this->setFromString($content),
+            is_resource($content) => $this->setFromPointer($content),
+            default => null,
+        };
     }
 
     /**
