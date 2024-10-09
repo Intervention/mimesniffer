@@ -13,12 +13,12 @@ class ApplicationTar extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "application/x-tar";
+    public string $name = "application/x-tar";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^.{514}7573746172/";
+    protected string $pattern = "/^.{514}7573746172/";
 }

@@ -13,12 +13,12 @@ class ApplicationPdf extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "application/pdf";
+    public string $name = "application/pdf";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^255044462D/";
+    protected string $pattern = "/^255044462D/";
 }

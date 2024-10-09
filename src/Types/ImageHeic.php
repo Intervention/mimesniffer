@@ -13,7 +13,7 @@ class ImageHeic extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/heic";
+    public string $name = "image/heic";
 
     /**
      * Signature pattern
@@ -22,5 +22,5 @@ class ImageHeic extends AbstractBinaryType
      *
      * @var string
      */
-    protected $pattern = "/66747970(68656963|68656978|68657663|6865696D|68656973|6865766D|68657673)/";
+    protected string $pattern = "/66747970(68656963|68656978|68657663|6865696D|68656973|6865766D|68657673)/";
 }

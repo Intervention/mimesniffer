@@ -13,12 +13,12 @@ class AudioFlac extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "audio/flac";
+    public string $name = "audio/flac";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^664C6143/";
+    protected string $pattern = "/^664C6143/";
 }

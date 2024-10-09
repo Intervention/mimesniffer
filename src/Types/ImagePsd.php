@@ -13,12 +13,12 @@ class ImagePsd extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/vnd.adobe.photoshop";
+    public string $name = "image/vnd.adobe.photoshop";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^38425053/";
+    protected string $pattern = "/^38425053/";
 }

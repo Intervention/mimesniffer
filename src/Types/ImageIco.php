@@ -13,12 +13,12 @@ class ImageIco extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/x-icon";
+    public string $name = "image/x-icon";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^00000100/";
+    protected string $pattern = "/^00000100/";
 }

@@ -13,12 +13,12 @@ class ImageGif extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/gif";
+    public string $name = "image/gif";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^47494638(37|39)61/";
+    protected string $pattern = "/^47494638(37|39)61/";
 }

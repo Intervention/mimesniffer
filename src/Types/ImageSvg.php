@@ -13,12 +13,12 @@ class ImageSvg extends AbstractType
      *
      * @var string
      */
-    public $name = "image/svg+xml";
+    public string $name = "image/svg+xml";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^(<\?xml[^>]*\?>.*)?<svg[^>]*>/is";
+    protected string $pattern = "/^(<\?xml[^>]*\?>.*)?<svg[^>]*>/is";
 }

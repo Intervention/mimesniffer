@@ -13,12 +13,12 @@ class TextPlain extends AbstractType
      *
      * @var string
      */
-    public $name = "text/plain";
+    public string $name = "text/plain";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^.*/s";
+    protected string $pattern = "/^.*/s";
 }

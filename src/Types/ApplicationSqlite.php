@@ -13,12 +13,12 @@ class ApplicationSqlite extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "application/vnd.sqlite3";
+    public string $name = "application/vnd.sqlite3";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^53514C69746520666F726D6174203300/";
+    protected string $pattern = "/^53514C69746520666F726D6174203300/";
 }

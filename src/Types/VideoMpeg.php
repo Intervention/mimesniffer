@@ -13,12 +13,12 @@ class VideoMpeg extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "video/mpeg";
+    public string $name = "video/mpeg";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^000001B3/";
+    protected string $pattern = "/^000001B3/";
 }

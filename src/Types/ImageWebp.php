@@ -13,12 +13,12 @@ class ImageWebp extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/webp";
+    public string $name = "image/webp";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^52494646.{8}57454250/";
+    protected string $pattern = "/^52494646.{8}57454250/";
 }

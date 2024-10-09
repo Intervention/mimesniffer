@@ -13,12 +13,12 @@ class ImageTiff extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/tiff";
+    public string $name = "image/tiff";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^(49492A00|4D4D002A)/";
+    protected string $pattern = "/^(49492A00|4D4D002A)/";
 }

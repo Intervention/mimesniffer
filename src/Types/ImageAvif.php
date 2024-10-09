@@ -13,7 +13,7 @@ class ImageAvif extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/avif";
+    public string $name = "image/avif";
 
     /**
      * Signature pattern
@@ -22,5 +22,5 @@ class ImageAvif extends AbstractBinaryType
      *
      * @var string
      */
-    protected $pattern = "/66747970(61766966)/";
+    protected string $pattern = "/66747970(61766966)/";
 }

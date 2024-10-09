@@ -13,14 +13,14 @@ abstract class AbstractType implements TypeInterface
      *
      * @var string
      */
-    public $name = '';
+    public string $name = '';
 
     /**
      * Signature pattern of type
      *
      * @var string
      */
-    protected $pattern = "/^$/";
+    protected string $pattern = "/^$/";
 
     /**
      * {@inheritdoc}

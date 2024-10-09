@@ -13,12 +13,12 @@ class ImagePng extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/png";
+    public string $name = "image/png";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^89504E470D0A1A0A/";
+    protected string $pattern = "/^89504E470D0A1A0A/";
 }

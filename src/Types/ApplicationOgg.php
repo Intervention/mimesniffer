@@ -13,12 +13,12 @@ class ApplicationOgg extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "application/ogg";
+    public string $name = "application/ogg";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^4F676753/";
+    protected string $pattern = "/^4F676753/";
 }

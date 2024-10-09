@@ -13,12 +13,12 @@ class ApplicationRar extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "application/x-rar-compressed";
+    public string $name = "application/x-rar-compressed";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^526172211A07(01)?00/";
+    protected string $pattern = "/^526172211A07(01)?00/";
 }

@@ -13,7 +13,7 @@ class ImageHeif extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/heif";
+    public string $name = "image/heif";
 
     /**
      * Signature pattern
@@ -22,5 +22,5 @@ class ImageHeif extends AbstractBinaryType
      *
      * @var string
      */
-    protected $pattern = "/66747970(6D696631|6D736631)/";
+    protected string $pattern = "/66747970(6D696631|6D736631)/";
 }

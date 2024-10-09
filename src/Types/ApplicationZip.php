@@ -13,12 +13,12 @@ class ApplicationZip extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "application/zip";
+    public string $name = "application/zip";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^504B(0304|0506|0708)/";
+    protected string $pattern = "/^504B(0304|0506|0708)/";
 }

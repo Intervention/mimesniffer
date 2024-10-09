@@ -13,12 +13,12 @@ class ImageJpeg extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "image/jpeg";
+    public string $name = "image/jpeg";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^FFD8FF(DB|E0|E1|E2|E3|E4|E5|E6|E7|E8|E9|EA|EB|EC|ED|EE|EF)/";
+    protected string $pattern = "/^FFD8FF(DB|E0|E1|E2|E3|E4|E5|E6|E7|E8|E9|EA|EB|EC|ED|EE|EF)/";
 }

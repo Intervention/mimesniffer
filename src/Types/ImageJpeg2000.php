@@ -13,12 +13,12 @@ class ImageJpeg2000 extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = 'image/jp2';
+    public string $name = 'image/jp2';
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^0000000C6A5020200D0A870A/";
+    protected string $pattern = "/^0000000C6A5020200D0A870A/";
 }

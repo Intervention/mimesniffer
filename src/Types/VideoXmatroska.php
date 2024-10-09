@@ -13,12 +13,12 @@ class VideoXmatroska extends AbstractBinaryType
      *
      * @var string
      */
-    public $name = "video/x-matroska";
+    public string $name = "video/x-matroska";
 
     /**
      * Signature pattern
      *
      * @var string
      */
-    protected $pattern = "/^1A45DFA3/";
+    protected string $pattern = "/^1A45DFA3/";
 }
