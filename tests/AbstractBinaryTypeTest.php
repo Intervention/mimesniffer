@@ -9,6 +9,15 @@ use Intervention\MimeSniffer\AbstractBinaryType;
 
 final class AbstractBinaryTypeTest extends TestCase
 {
+    protected AbstractBinaryType $type;
+
+    protected function setUp(): void
+    {
+        $this->type = new class () extends AbstractBinaryType {
+            //
+        };
+    }
+
     public function testPrepareContent(): void
     {
         $content = '';
@@ -16,14 +25,12 @@ final class AbstractBinaryTypeTest extends TestCase
             $content .= 'x';
         }
 
-        $type = $this->getMockForAbstractClass(AbstractBinaryType::class);
-        $this->assertEquals(1024, strlen($type->prepareContent($content)));
-        $this->assertEquals('78787878', substr($type->prepareContent($content), 0, 8));
+        $this->assertEquals(1024, strlen($this->type->prepareContent($content)));
+        $this->assertEquals('78787878', substr($this->type->prepareContent($content), 0, 8));
     }
 
     public function testIsBinary(): void
     {
-        $type = $this->getMockForAbstractClass(AbstractBinaryType::class);
-        $this->assertTrue($type->isBinary());
+        $this->assertTrue($this->type->isBinary());
     }
 }
