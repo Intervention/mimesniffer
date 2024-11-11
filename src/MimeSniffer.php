@@ -61,7 +61,6 @@ class MimeSniffer
      * Load contents of given string into instance
      *
      * @param string $content
-     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public function setFromString(string $content): self
@@ -166,7 +165,7 @@ class MimeSniffer
         $types = array_filter($types, function ($type) {
             return match (true) {
                 ($type instanceof TypeInterface) => true,
-                is_string($type) && class_exists($type) => true,
+                class_exists($type) => true,
                 default => false,
             };
         });
