@@ -10,7 +10,6 @@ use Intervention\MimeSniffer\Types\ImageGif;
 use Intervention\MimeSniffer\Types\ImageJpeg;
 use Intervention\MimeSniffer\Types\ImagePng;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 final class MimeSnifferTest extends TestCase
 {
