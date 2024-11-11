@@ -108,9 +108,9 @@ final class MimeSnifferTest extends TestCase
         $this->assertTrue($sniffer->matches([ImageJpeg::class, ImagePng::class, ImageGif::class]));
         $this->assertFalse($sniffer->matches([ImageJpeg::class, ImagePng::class]));
         $this->assertFalse($sniffer->matches([ImageJpeg::class, new ImagePng()]));
-        $this->assertFalse($sniffer->matches(['foo', new stdClass()]));
-        $this->assertTrue($sniffer->matches(['foo', new stdClass(), new ImageGif()]));
-        $this->assertTrue($sniffer->matches(['foo', new stdClass(), ImageGif::class]));
+        $this->assertFalse($sniffer->matches(['foo', new ImageJpeg()]));
+        $this->assertTrue($sniffer->matches(['foo', new ImageJpeg(), new ImageGif()]));
+        $this->assertTrue($sniffer->matches(['foo', new ImageJpeg(), ImageGif::class]));
     }
 
     public function testMatchesBogus(): void
