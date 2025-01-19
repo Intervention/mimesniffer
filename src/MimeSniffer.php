@@ -162,24 +162,16 @@ class MimeSniffer
             $types = [$types];
         }
 
-        $types = array_filter($types, function ($type) {
-            return match (true) {
-                ($type instanceof TypeInterface) => true,
-                class_exists($type) => true,
-                default => false,
-            };
+        $types = array_filter($types, fn(TypeInterface|string $type): bool => match (true) {
+            ($type instanceof TypeInterface) => true,
+            class_exists($type) => true,
+            default => false,
         });
 
-        $types = array_map(function ($type) {
-            return match (true) {
-                is_string($type) => new $type(),
-                default => $type,
-            };
+        $types = array_map(fn(TypeInterface|string $type): TypeInterface => match (true) {
+            is_string($type) => new $type(),
+            default => $type,
         }, $types);
-
-        $types = array_filter($types, function ($type) {
-            return $type instanceof TypeInterface;
-        });
 
         foreach ($types as $type) {
             if ($type->matches($this->content)) {
@@ -197,13 +189,12 @@ class MimeSniffer
      */
     private function getTypeClassnames(): array
     {
-        $files = array_diff(scandir(__DIR__ . '/Types'), ['.', '..']);
+        $classnames = array_map(
+            fn(string $filename): string => "Intervention\\MimeSniffer\\Types\\" . substr($filename, 0, -4),
+            array_diff(scandir(__DIR__ . '/Types'), ['.', '..'])
+        );
 
-        $classnames = array_map(function ($filename) {
-            return "Intervention\\MimeSniffer\\Types\\" . substr($filename, 0, -4);
-        }, $files);
-
-        return array_filter($classnames, function ($classname) {
+        return array_filter($classnames, function (string $classname): bool {
             return !in_array($classname, [
                 Types\ApplicationOctetStream::class,
                 Types\TextPlain::class,

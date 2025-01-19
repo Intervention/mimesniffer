@@ -39,7 +39,7 @@ abstract class AbstractType implements TypeInterface
      */
     public function isImage(): bool
     {
-        return substr($this->name, 0, 5) === 'image';
+        return str_starts_with($this->name, 'image');
     }
 
     /**
@@ -49,7 +49,7 @@ abstract class AbstractType implements TypeInterface
      */
     public function isVideo(): bool
     {
-        return substr($this->name, 0, 5) === 'video';
+        return str_starts_with($this->name, 'video');
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class AbstractType implements TypeInterface
      */
     public function isAudio(): bool
     {
-        return substr($this->name, 0, 5) === 'audio';
+        return str_starts_with($this->name, 'audio');
     }
 
     /**
