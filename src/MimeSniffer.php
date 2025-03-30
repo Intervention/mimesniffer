@@ -113,8 +113,8 @@ class MimeSniffer
     /**
      * Load contents of given filename in current instance
      *
-     * @throws InvalidArgumentException
      * @param resource $pointer
+     * @throws InvalidArgumentException
      * @return MimeSniffer
      */
     public function setFromPointer($pointer): self
