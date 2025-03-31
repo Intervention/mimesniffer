@@ -34,6 +34,30 @@ class MimeSniffer
     }
 
     /**
+     * Create a new instance and load contents of given filename
+     *
+     * @param string $filename
+     * @throws InvalidArgumentException
+     * @return MimeSniffer
+     */
+    public static function createFromFilename(string $filename): self
+    {
+        return (new self())->setFromFilename($filename);
+    }
+
+    /**
+     * Create a new instance and load contents of given filename
+     *
+     * @param resource $pointer
+     * @throws InvalidArgumentException
+     * @return MimeSniffer
+     */
+    public static function createFromPointer($pointer): self
+    {
+        return (new self())->setFromPointer($pointer);
+    }
+
+    /**
      * Universal factory method
      *
      * @param mixed $content
@@ -71,18 +95,6 @@ class MimeSniffer
     }
 
     /**
-     * Create a new instance and load contents of given filename
-     *
-     * @param string $filename
-     * @throws InvalidArgumentException
-     * @return MimeSniffer
-     */
-    public static function createFromFilename(string $filename): self
-    {
-        return (new self())->setFromFilename($filename);
-    }
-
-    /**
      * Load contents of given filename in current instance
      *
      * @param string $filename
@@ -96,18 +108,6 @@ class MimeSniffer
         fclose($fp);
 
         return $this;
-    }
-
-    /**
-     * Create a new instance and load contents of given filename
-     *
-     * @param resource $pointer
-     * @throws InvalidArgumentException
-     * @return MimeSniffer
-     */
-    public static function createFromPointer($pointer): self
-    {
-        return (new self())->setFromPointer($pointer);
     }
 
     /**
