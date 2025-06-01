@@ -10,15 +10,11 @@ class VideoXmatroska extends AbstractBinaryType
 {
     /**
      * Name of content type
-     *
-     * @var string
      */
     public string $name = "video/x-matroska";
 
     /**
      * Signature pattern
-     *
-     * @var string
      */
     protected string $pattern = "/^1A45DFA3/";
 }

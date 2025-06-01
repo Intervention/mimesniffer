@@ -10,15 +10,11 @@ class AudioMpeg extends AbstractBinaryType
 {
     /**
      * Name of content type
-     *
-     * @var string
      */
     public string $name = "audio/mpeg";
 
     /**
      * Signature pattern
-     *
-     * @var string
      */
     protected string $pattern = "/^(FFFB|494433)/";
 }

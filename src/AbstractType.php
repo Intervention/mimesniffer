@@ -10,15 +10,11 @@ abstract class AbstractType implements TypeInterface
 {
     /**
      * Name of content type (mime type)
-     *
-     * @var string
      */
     public string $name = '';
 
     /**
      * Signature pattern of type
-     *
-     * @var string
      */
     protected string $pattern = "/^$/";
 
@@ -79,9 +75,6 @@ abstract class AbstractType implements TypeInterface
 
     /**
      * Prepare content (can be extended by child classes)
-     *
-     * @param string $content
-     * @return string
      */
     public function prepareContent(string $content): string
     {

@@ -10,15 +10,11 @@ class ApplicationPdf extends AbstractBinaryType
 {
     /**
      * Name of content type
-     *
-     * @var string
      */
     public string $name = "application/pdf";
 
     /**
      * Signature pattern
-     *
-     * @var string
      */
     protected string $pattern = "/^255044462D/";
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Intervention\MimeSniffer\Tests;
 
+use Intervention\MimeSniffer\Interfaces\TypeInterface;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageSvg;
 use Intervention\MimeSniffer\Types\TextPlain;
@@ -11,8 +12,8 @@ use PHPUnit\Framework\TestCase;
 
 final class ImageSvgTest extends TestCase
 {
-    public $sniffer;
-    public $type;
+    public MimeSniffer $sniffer;
+    public TypeInterface $type;
 
     protected function setUp(): void
     {

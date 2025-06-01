@@ -11,17 +11,13 @@ class MimeSniffer
 {
     /**
      * Content to detect mime type from
-     *
-     * @var string
      */
     protected string $content;
 
     /**
      * Create new instance
      *
-     * @param mixed $content
      * @throws InvalidArgumentException
-     * @return void
      */
     public function __construct(mixed $content = null)
     {
@@ -36,9 +32,7 @@ class MimeSniffer
     /**
      * Create a new instance and load contents of given filename
      *
-     * @param string $filename
      * @throws InvalidArgumentException
-     * @return MimeSniffer
      */
     public static function createFromFilename(string $filename): self
     {
@@ -48,11 +42,9 @@ class MimeSniffer
     /**
      * Create a new instance and load contents of given filename
      *
-     * @param resource $pointer
      * @throws InvalidArgumentException
-     * @return MimeSniffer
      */
-    public static function createFromPointer($pointer): self
+    public static function createFromPointer(mixed $pointer): self
     {
         return (new self())->setFromPointer($pointer);
     }
@@ -60,9 +52,7 @@ class MimeSniffer
     /**
      * Universal factory method
      *
-     * @param mixed $content
      * @throws InvalidArgumentException
-     * @return MimeSniffer
      */
     public static function create(mixed $content): self
     {
@@ -72,9 +62,7 @@ class MimeSniffer
     /**
      * Create new instance from given string
      *
-     * @param string $content
      * @throws InvalidArgumentException
-     * @return MimeSniffer
      */
     public static function createFromString(string $content): self
     {
@@ -83,9 +71,6 @@ class MimeSniffer
 
     /**
      * Load contents of given string into instance
-     *
-     * @param string $content
-     * @return MimeSniffer
      */
     public function setFromString(string $content): self
     {
@@ -97,9 +82,7 @@ class MimeSniffer
     /**
      * Load contents of given filename in current instance
      *
-     * @param string $filename
      * @throws InvalidArgumentException
-     * @return MimeSniffer
      */
     public function setFromFilename(string $filename): self
     {
@@ -113,11 +96,9 @@ class MimeSniffer
     /**
      * Load contents of given filename in current instance
      *
-     * @param resource $pointer
      * @throws InvalidArgumentException
-     * @return MimeSniffer
      */
-    public function setFromPointer($pointer): self
+    public function setFromPointer(mixed $pointer): self
     {
         if (!is_resource($pointer)) {
             throw new InvalidArgumentException('Argument #1 $pointer must be of type resource.');
@@ -130,8 +111,6 @@ class MimeSniffer
 
     /**
      * Return detected type
-     *
-     * @return TypeInterface
      */
     public function getType(): TypeInterface
     {
@@ -154,7 +133,6 @@ class MimeSniffer
      * Determine if content matches the given type or any if the given types in array
      *
      * @param TypeInterface|string|array<TypeInterface|string> $types
-     * @return bool
      */
     public function matches(TypeInterface|string|array $types): bool
     {

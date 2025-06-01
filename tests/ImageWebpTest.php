@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Intervention\MimeSniffer\Tests;
 
+use Intervention\MimeSniffer\Interfaces\TypeInterface;
 use PHPUnit\Framework\TestCase;
 use Intervention\MimeSniffer\MimeSniffer;
 use Intervention\MimeSniffer\Types\ImageWebp;
 
 final class ImageWebpTest extends TestCase
 {
-    public $sniffer;
-    public $type;
+    public MimeSniffer $sniffer;
+    public TypeInterface $type;
 
     protected function setUp(): void
     {

@@ -8,9 +8,6 @@ abstract class AbstractBinaryType extends AbstractType
 {
     /**
      * Prepare content (can be extended by child classes)
-     *
-     * @param string $content
-     * @return string
      */
     public function prepareContent(string $content): string
     {

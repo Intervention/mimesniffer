@@ -10,17 +10,11 @@ class ImageAvif extends AbstractBinaryType
 {
     /**
      * Name of content type
-     *
-     * @var string
      */
     public string $name = "image/avif";
 
     /**
-     * Signature pattern
-     *
-     * ftyp(avif)
-     *
-     * @var string
+     * Signature pattern: ftyp(avif)
      */
     protected string $pattern = "/66747970(61766966)/";
 }

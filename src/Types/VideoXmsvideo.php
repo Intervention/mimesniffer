@@ -10,15 +10,11 @@ class VideoXmsvideo extends AbstractBinaryType
 {
     /**
      * Name of content type
-     *
-     * @var string
      */
     public string $name = "video/x-msvideo";
 
     /**
      * Signature pattern
-     *
-     * @var string
      */
     protected string $pattern = "/^52494646.{8}41564920/";
 }
